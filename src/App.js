@@ -5,6 +5,7 @@ import {
   PieChartOutlined,
   FileOutlined,
   UserOutlined,
+  LogoutOutlined,
 } from '@ant-design/icons';
 import {useState} from 'react';
 
@@ -38,7 +39,10 @@ function App() {
       </Menu>
     </Sider>
     <Layout className="site-layout">
-      <Header className="site-layout-background" style={{ padding: 0 }} />
+      <Header className="site-layout-background Header">
+      <div><LogoutOutlined/></div>
+
+      </Header>
       <Content style={{ margin: '0 16px' }}>
         <Breadcrumb style={{ margin: '16px 0' }}>
           <Breadcrumb.Item>User</Breadcrumb.Item>
