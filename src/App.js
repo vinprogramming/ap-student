@@ -14,30 +14,30 @@ function App() {
 
   return (
     <>
+      <BrowserRouter>
 
-      <Layout style={{ minHeight: '100vh' }}>
-        <AppSider />
-        <Layout className="site-layout">
-          <AppHeader />
-          <Content style={{ margin: '0 16px' }}>
-            <BrowserRouter>
+        <Layout style={{ minHeight: '100vh' }}>
+          <AppSider />
+          <Layout className="site-layout">
+            <AppHeader />
+            <Content style={{ margin: '0 16px' }}>
               <Switch>
-                <Route path="/" component={SDashBoard} exact />
                 <Route path="/myapplications" component={MyApplications} exact />
                 <Route path="/docs" component={Documents} exact />
                 <Route path="/calendar" component={Calendar} exact />
                 <Route path="/myqueries" component={MyQueries} exact />
                 <Route path="/profile" component={Profile} exact />
                 <AppBreadcrumb keys={['App', 'Dashboard']} />
+                
                 <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
                   Bill is a cat.
                 </div>
               </Switch>
-            </BrowserRouter>
-          </Content>
-          <AppFooter />
+            </Content>
+            <AppFooter />
+          </Layout>
         </Layout>
-      </Layout>
+      </BrowserRouter>
 
     </>
   );

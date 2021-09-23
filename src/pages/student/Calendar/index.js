@@ -1,9 +1,9 @@
-import React from 'react'
+import {CCalendar} from '../../../components';
 
 export default function Calendar() {
     return (
         <div>
-            Calendar
+            <CCalendar/>
         </div>
     )
 }
