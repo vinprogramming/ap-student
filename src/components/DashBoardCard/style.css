@@ -1,0 +1,14 @@
+.card{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    /* min-width: 100px; */
+    color:white;
+    background-color: #001529;
+    border-radius:0.4em;
+    box-shadow: .12em .2em .1em rgb(151, 151, 151);
+}
+.firstDiv, .secondDiv{
+    padding: 1em;
+}
