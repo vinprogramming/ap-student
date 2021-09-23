@@ -2,7 +2,8 @@ import './App.css';
 import { Layout } from 'antd';
 import { AppHeader, AppSider, AppFooter, AppBreadcrumb } from './components';
 
-import { SDashBoard, Documents, Calendar, MyApplications, MyQueries } from './pages/student';
+import { SDashBoard, Documents, Calendar,MyApplications, MyQueries  } from './pages/student';
+import { Profile } from './pages/common';
 import {
   BrowserRouter, Route, Switch,
 } from 'react-router-dom';
@@ -23,6 +24,7 @@ function App() {
               <Route path="/docs" component={Documents} exact />
               <Route path="/calendar" component={Calendar} exact />
               <Route path="/myqueries" component={MyQueries} exact />
+              <Route path="/profile" component={Profile} exact />
               <Route path="/" component={SDashBoard} exact />
               {/* 
                 <AppBreadcrumb keys={['App', 'Dashboard']} />

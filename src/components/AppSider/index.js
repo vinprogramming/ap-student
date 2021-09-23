@@ -48,7 +48,6 @@ function AppSider() {
                     </Menu.Item>
                     <Menu.Item key={keyCounter++} icon={<UserOutlined />}>
                         Profile
-                        <span> Profile</span>
                         <Link to="/profile" />
                     </Menu.Item>
                 </Menu>

@@ -2,6 +2,6 @@ import { Layout } from 'antd';
 const { Footer } = Layout;
 export default function AppFooter() {
     return (
-        <Footer style={{ textAlign: 'center' }}>All Rights Reserved by @adMISSION 2021</Footer>
+        <Footer style={{ textAlign: 'center' }}>Handle My Admissions @2021</Footer>
     )
 }
