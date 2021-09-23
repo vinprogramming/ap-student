@@ -7,7 +7,10 @@ import {
     CalendarOutlined,
     QuestionOutlined,
 } from '@ant-design/icons';
+
+import { BrowserRouter as Router, Link } from "react-router-dom";
 import { Layout, Menu } from 'antd';
+
 const { Sider } = Layout;
 
 function AppSider() {
@@ -18,29 +21,39 @@ function AppSider() {
         setcollapsed(collapsed);
     };
     return (
-        <Sider collapsible collapsed={collapsed} onCollapse={() => onCollapse(!collapsed)}>
-            <div className="logo" />
-            <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-                <Menu.Item key={keyCounter++} icon={<PieChartOutlined />}>
-                    Dashboard
-                </Menu.Item>
-                <Menu.Item key={keyCounter++} icon={<ProfileOutlined />}>
-                    Applications
-                </Menu.Item>
-                <Menu.Item key={keyCounter++} icon={<FileOutlined />}>
-                    Documents
-                </Menu.Item>
-                <Menu.Item key={keyCounter++} icon={<CalendarOutlined />} title="User">
-                    Calendar
-                </Menu.Item>
-                <Menu.Item key={keyCounter++} icon={<QuestionOutlined />} title="User">
-                    My Queries
-                </Menu.Item>
-                <Menu.Item key={keyCounter++} icon={<UserOutlined />} title="User">
-                    Profile
-                </Menu.Item>
-            </Menu>
-        </Sider>
+        <Router>
+            <Sider collapsible collapsed={collapsed} onCollapse={() => onCollapse(!collapsed)}
+            >
+                <div className="logo" />
+                <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
+                    <Menu.Item key={keyCounter++} icon={<PieChartOutlined />}>
+                        <span>Dashboard</span>
+                        <Link to="/" />
+                    </Menu.Item>
+                    <Menu.Item key={keyCounter++} icon={<ProfileOutlined />}>
+                        <span>Applications</span>
+                        <Link to="/myapplications" />
+                    </Menu.Item>
+                    <Menu.Item key={keyCounter++} icon={<FileOutlined />}>
+                        <span>Documents</span>
+                        <Link to="/docs" />
+                    </Menu.Item>
+                    <Menu.Item key={keyCounter++} icon={<CalendarOutlined />} >
+                        <span>Calendar</span>
+                        <Link to="/calendar" />
+                    </Menu.Item>
+                    <Menu.Item key={keyCounter++} icon={<QuestionOutlined />} >
+                        <span> My Queries</span>
+                        <Link to="/myqueries" />
+                    </Menu.Item>
+                    <Menu.Item key={keyCounter++} icon={<UserOutlined />}>
+                        Profile
+                        <Link to="/profile" />
+                    </Menu.Item>
+                </Menu>
+            </Sider>
+
+        </Router>
     )
 }
 
