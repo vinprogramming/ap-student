@@ -1,0 +1,10 @@
+.ProfilePicCard{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.ProfileFooter{
+    display:flex;
+    
+}

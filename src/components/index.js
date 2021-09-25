@@ -5,3 +5,4 @@ export { default as AppBreadcrumb } from './AppBreadcrumb';
 export { default as CCalendar } from './CCalendar';
 export { default as DashBoardCard } from './DashBoardCard';
 export { default as Updates } from './Updates';
+export { default as FormComp } from './FormComp';

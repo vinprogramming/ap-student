@@ -1,14 +1,30 @@
 import './App.css';
 import { Layout } from 'antd';
 import { AppHeader, AppSider, AppFooter, AppBreadcrumb } from './components';
-
 import { SDashBoard, Documents, Calendar, MyApplications, MyQueries } from './pages/student';
 import { Profile } from './pages/common';
 import {
   BrowserRouter, Route, Switch,
 } from 'react-router-dom';
+import {
+  ProfileOutlined,
+  PieChartOutlined,
+  FileOutlined,
+  UserOutlined,
+  CalendarOutlined,
+  QuestionOutlined,
+} from '@ant-design/icons';
 const { Content } = Layout;
 
+let studentSiderData = [
+  {title: 'Notifications', linkTo: '/', icon: <PieChartOutlined />},
+  { title: 'Dashboard', linkTo: '/', icon: <PieChartOutlined />, },
+  { title: 'My Applications', linkTo: '/myapplications', icon: <ProfileOutlined />, },
+  { title: 'Documents', linkTo: '/docs', icon: <FileOutlined />, },
+  { title: 'Calendar', linkTo: '/calendar', icon: <CalendarOutlined />, },
+  { title: 'My Queries', linkTo: '/myqueries', icon: <QuestionOutlined /> ,},
+  { title: 'Profile', linkTo: '/Profile', icon: <UserOutlined />, },
+]
 
 function App() {
 
@@ -18,7 +34,7 @@ function App() {
         <AppHeader />
 
         <Layout className="site-layout">
-          <AppSider />
+          <AppSider data={studentSiderData} haveSubMenu={true} isCollapsible={true} />
           <Layout style={{ minHeight: '100vh' }}>
             <Content style={{ margin: '0 16px' }}>
               <Switch>
