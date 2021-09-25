@@ -17,7 +17,6 @@ import {
 const { Content } = Layout;
 
 let studentSiderData = [
-  {title: 'Notifications', linkTo: '/', icon: <PieChartOutlined />},
   { title: 'Dashboard', linkTo: '/', icon: <PieChartOutlined />, },
   { title: 'My Applications', linkTo: '/myapplications', icon: <ProfileOutlined />, },
   { title: 'Documents', linkTo: '/docs', icon: <FileOutlined />, },

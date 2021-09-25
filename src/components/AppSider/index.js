@@ -20,13 +20,13 @@ function AppSider({ data, haveSubMenu, isCollapsible }) {
         <Sider width={210}
             className="site-layout-background" collapsible={isCollapsible} collapsed={collapsed} onCollapse={() => onCollapse(!collapsed)}>
             <Menu
-                // mode="inline"
+                mode="inline"
                 defaultSelectedKeys={['1']}
                 defaultOpenKeys={['sub1']}
                 style={{ height: '100%', borderRight: 0 }}
             >
                 {
-                    haveSubMenu ?
+                    haveSubMenu === true ?
                         <SubMenu key="sub3" icon={<NotificationOutlined />} title="Notifications">
                             <Menu.Item key="9">notice1</Menu.Item>
                             <Menu.Item key="10">notice2</Menu.Item>

@@ -181,7 +181,7 @@ export default function FormComp() {
                 </Form.Item>
                 <Form.Item {...tailFormItemLayout}>
                     <Button type="primary" htmlType="submit">
-                        Register
+                        Save
                     </Button>
                 </Form.Item>
             </Form>
