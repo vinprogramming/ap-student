@@ -1,0 +1,10 @@
+.UpdateContainer {
+  height: 10em;
+  overflow-y: scroll;
+  border: 1px solid black;
+  padding: 1.2em;
+  border-radius: 0.4em;
+  margin: 0.8em;
+  box-shadow: 0.12em 0.2em 0.1em rgb(151, 151, 151);
+  background-color: white;
+}
