@@ -8,6 +8,7 @@ import {
   Button,
 } from 'antd';
 import moment from 'moment';
+import {useState} from 'react';
 const formItemLayout = {
 //   labelCol: {
 //     xs: {
@@ -52,11 +53,39 @@ const prefixSelector = (
   </Form.Item>
 );
 
-export default function FormComp() {
+const apiFunc=()=>{
+    var myHeaders = new Headers();
+    myHeaders.append("id", "2");
+    myHeaders.append("Authorization", "Bearer eyJraWQiOiJ0TEY5aXBDYTdZMFpnSnR4R1g0eFNTZUlaMVY1S05LdWRvSGVqS3JJRUEwPSIsImFsZyI6IlJTMjU2In0.eyJhdF9oYXNoIjoiU1VNMl9UaHF5Um9GeGdjV3AxWnJJUSIsInN1YiI6IjJjNmJkYWUyLWNkMWUtNGIzNi1iZjc5LWFjZDE2ZGY5NjYyMyIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9LMWp4b2NrWlciLCJjb2duaXRvOnVzZXJuYW1lIjoic2hyZXkiLCJhdWQiOiI0djlzMHJudTNnZ2FhdWFnY2lrYmwyYjQ2bCIsImV2ZW50X2lkIjoiMDljNmNmYjQtMjNjYy00YTY1LTkyMjQtNjk1NDA0YzcyYWI3IiwidG9rZW5fdXNlIjoiaWQiLCJhdXRoX3RpbWUiOjE2MzI1NjY5MDcsImV4cCI6MTYzMjU3NDEwNywiaWF0IjoxNjMyNTY2OTA3LCJqdGkiOiJmYTYzZGVhYy00MjVmLTRhZTAtOTkyYy1kOTdlM2ZmYWM1YjEiLCJlbWFpbCI6IjE5aXQwNTlAY2hhcnVzYXQuZWR1LmluIn0.Uvezi6WfVUjI5PhCCW1Jg8WfOyeyNNZh-tQ38rXtGrq6GfEFyoKxnmF9Btb6wjqeZ2g01CAtFncJpJNeBNxrxHyNAdKBvdTxsY5HqrdH8qFwz9vVKjWPJ9ljYRdjC0yYdMSGSsU6v3nFnuQl5f9QMf93nJqd5-UeT_fUMiVM07pJmrfqzr7uvGWkttE-0O9qVxsxkeOxBEbDYcULbuoLsr5JOsCvngXL_KTQJyIs-2yb6w5bGd7EzERGAvq2VSnc2xeoYk62sE-T5YTwdH8AUepR0CTDsREIQJKY-sVxJDqYhjEWA7CdafXxmup7oEod7_Wpbl-k2JcsC34kVRh2dw");
+    myHeaders.append("Content-Type", "application/json");
     
+    var raw = JSON.stringify({
+      "id": 10,
+      "nationality": "Caucasian",
+      "dob": "20-9-2001",
+      "sex": "Female",
+      "email": "alexa.contact4@gmail.com",
+      "name": "Alexa",
+      "phone": "9144790514"
+    });
+    
+    var requestOptions = {
+      method: 'PUT',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow'
+    };
+    
+    fetch("https://m3j6kmp129.execute-api.us-east-1.amazonaws.com/d1/items", requestOptions)
+      .then(response => response.text())
+      .then(result => console.log(result))
+      .catch(error => console.log('error', error));
+}
+export default function FormComp() {
+    const [fname,setFname]=useState('')
     return (
         <div>
-            <Form {...formItemLayout}>
+            <Form {...formItemLayout} onSubmit={apiFunc}>
                 <Form.Item
                     name="firstname"
                     label="First Name"
@@ -71,7 +100,7 @@ export default function FormComp() {
                         },
                     ]}
                 >
-                    <Input placeholder="First Name" />
+                    <Input placeholder="First Name" onChange={(e)=>{console.log(e.target.value);setFname(e.target.value)}} />
                 </Form.Item>
 
                 <Form.Item
@@ -181,7 +210,7 @@ export default function FormComp() {
                 </Form.Item>
                 <Form.Item {...tailFormItemLayout}>
                     <Button type="primary" htmlType="submit">
-                        Register
+                        Save
                     </Button>
                 </Form.Item>
             </Form>
