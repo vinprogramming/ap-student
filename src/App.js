@@ -14,6 +14,7 @@ import {
   CalendarOutlined,
   QuestionOutlined,
 } from '@ant-design/icons';
+import { ProfilePassAndSec } from './containers';
 const { Content } = Layout;
 
 let studentSiderData = [

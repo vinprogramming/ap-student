@@ -1,13 +1,13 @@
-import { FormComp, AppSider } from '../../../components';
-import {ProfilePicCard} from '../../../containers';
+import { AppSider } from '../../../components';
 import {
   EditFilled,
   SafetyCertificateFilled,
   SettingFilled,
 } from '@ant-design/icons';
-import { Layout, Typography, Row, Col } from 'antd';
+import { Layout } from 'antd';
+import {ProfileEdit,ProfileOther,ProfilePassAndSec} from '../../../containers';
+import {BrowserRouter,Switch,Route} from 'react-router-dom';
 import './style.css';
-const { Title } = Typography;
 
 let studentProfileData = [
   { title: 'Edit Profile', linkTo: '/Profile/edit', icon: <EditFilled /> },
@@ -18,29 +18,28 @@ export default function Profile() {
 
   return (
     <div className="Profile" style={{ marginTop: '2em' }}>
+              {/* <BrowserRouter> */}
+
       <Layout>
         <Layout style={{ minHeight: '100vh' }}>
           <AppSider data={studentProfileData} haveSubMenu={false} isCollapsible={false} />
           <Layout style={{ minHeight: '100vh' }}>
             <Layout.Content style={{ margin: '0 16px', backgroundColor: 'white' }}>
-              <Row style={{marginTop:'1.2em'}}>
-                <Title level={3}>Edit Profile</Title>
-              </Row>
-              <Row style={{marginTop:'1.2em'}}>
-                <Col xl={7} xs={24}>
-                    <ProfilePicCard />
-                </Col>
-                <Col xl={1} xs={0}>
-                  <div/>
-                </Col>
-                <Col xl={16} xs={24}>
-                  <FormComp />
-                </Col>
-              </Row>
+              <ProfileEdit/>
+              <Switch>
+                {/* TODO:This is not working !! */}
+                <Route path="/Profile/edit" component={ProfileEdit} exact />
+                <Route path="/Profile/passAndsecurity" component={ProfilePassAndSec} exact />
+                <Route path="/Profile/other" component={ProfileOther} exact />
+
+              </Switch>
+
             </Layout.Content>
           </Layout>
         </Layout>
       </Layout>
+    {/* </BrowserRouter> */}
+
     </div>
   )
 }
