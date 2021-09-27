@@ -81,8 +81,29 @@ const apiFunc=()=>{
       .then(result => console.log(result))
       .catch(error => console.log('error', error));
 }
+
+
 export default function FormComp() {
-    const [fname,setFname]=useState('')
+    const [form,setform] = useState({
+        FirstName: '',
+        LastName: '',
+        Phone: '',
+        DOB:'',
+        Gender:'',
+        nationality:'',
+        address:'',
+
+    });
+    const [AggrementCheck,setAggrementCheck] = useState({})
+
+    const handleformchange = event => {
+      setform({
+        ...form,
+        [event.target.name]:event.target.value,
+        });
+    };
+
+
     return (
         <div>
             <Form {...formItemLayout} onSubmit={apiFunc}>
@@ -100,7 +121,7 @@ export default function FormComp() {
                         },
                     ]}
                 >
-                    <Input placeholder="First Name" onChange={(e)=>{console.log(e.target.value);setFname(e.target.value)}} />
+                    <Input placeholder="First Name" value = {form.FirstName} onChange= {handleformchange} />
                 </Form.Item>
 
                 <Form.Item
@@ -117,7 +138,7 @@ export default function FormComp() {
                         },
                     ]}
                 >
-                    <Input placeholder="Last Name" />
+                    <Input placeholder="Last Name" value={form.LastName} onChange={handleformchange} />
                 </Form.Item>
                 <Form.Item
                     name="dateofbirth"
@@ -134,7 +155,7 @@ export default function FormComp() {
                     ]}
                 >
                     <Space direction="vertical" size={10}>
-                        <DatePicker defaultValue={moment('01/01/2001', dateFormatList[0])} format={dateFormatList} />
+                        <DatePicker defaultValue={moment('01/01/2001', dateFormatList[0])} format={dateFormatList} value ={form.DOB} onChange={handleformchange} />
                     </Space>
                 </Form.Item>
                 <Form.Item
@@ -147,7 +168,7 @@ export default function FormComp() {
                         },
                     ]}
                 >
-                    <Select placeholder="select your gender">
+                    <Select placeholder="select your gender" value={form.Gender} onChange={handleformchange}>
                         <Option value="male">Male</Option>
                         <Option value="female">Female</Option>
                         <Option value="other">Other</Option>
@@ -168,6 +189,8 @@ export default function FormComp() {
                         style={{
                             width: '100%',
                         }}
+                        value={form.Phone}
+                        onChange={handleformchange}
                     />
                 </Form.Item>
                 <Form.Item
@@ -183,7 +206,7 @@ export default function FormComp() {
                             message: 'Please input your nationality!',
                         },
                     ]}>
-                    <Input placeholder="Eg. Indian" />
+                    <Input placeholder="Eg. Indian" value={form.nationality} onChange={handleformchange}/>
                 </Form.Item>
                 <Form.Item
                     name="address"
