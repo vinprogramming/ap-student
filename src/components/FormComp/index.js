@@ -53,34 +53,7 @@ const prefixSelector = (
   </Form.Item>
 );
 
-const apiFunc=()=>{
-    var myHeaders = new Headers();
-    myHeaders.append("id", "2");
-    myHeaders.append("Authorization", "Bearer eyJraWQiOiJ0TEY5aXBDYTdZMFpnSnR4R1g0eFNTZUlaMVY1S05LdWRvSGVqS3JJRUEwPSIsImFsZyI6IlJTMjU2In0.eyJhdF9oYXNoIjoiU1VNMl9UaHF5Um9GeGdjV3AxWnJJUSIsInN1YiI6IjJjNmJkYWUyLWNkMWUtNGIzNi1iZjc5LWFjZDE2ZGY5NjYyMyIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9LMWp4b2NrWlciLCJjb2duaXRvOnVzZXJuYW1lIjoic2hyZXkiLCJhdWQiOiI0djlzMHJudTNnZ2FhdWFnY2lrYmwyYjQ2bCIsImV2ZW50X2lkIjoiMDljNmNmYjQtMjNjYy00YTY1LTkyMjQtNjk1NDA0YzcyYWI3IiwidG9rZW5fdXNlIjoiaWQiLCJhdXRoX3RpbWUiOjE2MzI1NjY5MDcsImV4cCI6MTYzMjU3NDEwNywiaWF0IjoxNjMyNTY2OTA3LCJqdGkiOiJmYTYzZGVhYy00MjVmLTRhZTAtOTkyYy1kOTdlM2ZmYWM1YjEiLCJlbWFpbCI6IjE5aXQwNTlAY2hhcnVzYXQuZWR1LmluIn0.Uvezi6WfVUjI5PhCCW1Jg8WfOyeyNNZh-tQ38rXtGrq6GfEFyoKxnmF9Btb6wjqeZ2g01CAtFncJpJNeBNxrxHyNAdKBvdTxsY5HqrdH8qFwz9vVKjWPJ9ljYRdjC0yYdMSGSsU6v3nFnuQl5f9QMf93nJqd5-UeT_fUMiVM07pJmrfqzr7uvGWkttE-0O9qVxsxkeOxBEbDYcULbuoLsr5JOsCvngXL_KTQJyIs-2yb6w5bGd7EzERGAvq2VSnc2xeoYk62sE-T5YTwdH8AUepR0CTDsREIQJKY-sVxJDqYhjEWA7CdafXxmup7oEod7_Wpbl-k2JcsC34kVRh2dw");
-    myHeaders.append("Content-Type", "application/json");
-    
-    var raw = JSON.stringify({
-      "id": 10,
-      "nationality": "Caucasian",
-      "dob": "20-9-2001",
-      "sex": "Female",
-      "email": "alexa.contact4@gmail.com",
-      "name": "Alexa",
-      "phone": "9144790514"
-    });
-    
-    var requestOptions = {
-      method: 'PUT',
-      headers: myHeaders,
-      body: raw,
-      redirect: 'follow'
-    };
-    
-    fetch("https://m3j6kmp129.execute-api.us-east-1.amazonaws.com/d1/items", requestOptions)
-      .then(response => response.text())
-      .then(result => console.log(result))
-      .catch(error => console.log('error', error));
-}
+
 
 
 export default function FormComp() {
@@ -99,11 +72,37 @@ export default function FormComp() {
     const handleformchange = event => {
       setform({
         ...form,
-        [event.target.name]:event.target.value,
         });
     };
 
-
+    const apiFunc=()=>{
+        var myHeaders = new Headers();
+        myHeaders.append("id", "2");
+        myHeaders.append("Authorization", "Bearer eyJraWQiOiJ0TEY5aXBDYTdZMFpnSnR4R1g0eFNTZUlaMVY1S05LdWRvSGVqS3JJRUEwPSIsImFsZyI6IlJTMjU2In0.eyJhdF9oYXNoIjoiU1VNMl9UaHF5Um9GeGdjV3AxWnJJUSIsInN1YiI6IjJjNmJkYWUyLWNkMWUtNGIzNi1iZjc5LWFjZDE2ZGY5NjYyMyIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9LMWp4b2NrWlciLCJjb2duaXRvOnVzZXJuYW1lIjoic2hyZXkiLCJhdWQiOiI0djlzMHJudTNnZ2FhdWFnY2lrYmwyYjQ2bCIsImV2ZW50X2lkIjoiMDljNmNmYjQtMjNjYy00YTY1LTkyMjQtNjk1NDA0YzcyYWI3IiwidG9rZW5fdXNlIjoiaWQiLCJhdXRoX3RpbWUiOjE2MzI1NjY5MDcsImV4cCI6MTYzMjU3NDEwNywiaWF0IjoxNjMyNTY2OTA3LCJqdGkiOiJmYTYzZGVhYy00MjVmLTRhZTAtOTkyYy1kOTdlM2ZmYWM1YjEiLCJlbWFpbCI6IjE5aXQwNTlAY2hhcnVzYXQuZWR1LmluIn0.Uvezi6WfVUjI5PhCCW1Jg8WfOyeyNNZh-tQ38rXtGrq6GfEFyoKxnmF9Btb6wjqeZ2g01CAtFncJpJNeBNxrxHyNAdKBvdTxsY5HqrdH8qFwz9vVKjWPJ9ljYRdjC0yYdMSGSsU6v3nFnuQl5f9QMf93nJqd5-UeT_fUMiVM07pJmrfqzr7uvGWkttE-0O9qVxsxkeOxBEbDYcULbuoLsr5JOsCvngXL_KTQJyIs-2yb6w5bGd7EzERGAvq2VSnc2xeoYk62sE-T5YTwdH8AUepR0CTDsREIQJKY-sVxJDqYhjEWA7CdafXxmup7oEod7_Wpbl-k2JcsC34kVRh2dw");
+        myHeaders.append("Content-Type", "application/json");
+        
+        var raw = JSON.stringify({
+          "id": 10,
+          "nationality": form.nationality,
+          "dob": form.DOB,
+          "sex": form.Gender,
+          "email": "alexa.contact4@gmail.com",
+          "name": form.FirstName,
+          "phone": form.Phone,
+        });
+        
+        var requestOptions = {
+          method: 'PUT',
+          headers: myHeaders,
+          body: raw,
+          redirect: 'follow'
+        };
+        
+        fetch("https://m3j6kmp129.execute-api.us-east-1.amazonaws.com/d1/items", requestOptions)
+          .then(response => response.text())
+          .then(result => console.log(result))
+          .catch(error => console.log('error', error));
+    }
     return (
         <div>
             <Form {...formItemLayout} onSubmit={apiFunc}>
@@ -149,13 +148,13 @@ export default function FormComp() {
                             message: 'Enter the DOB',
                         },
                         {
-                            required: true,
+                            required: false,
                             message: 'DOb is required!',
                         },
                     ]}
                 >
                     <Space direction="vertical" size={10}>
-                        <DatePicker defaultValue={moment('01/01/2001', dateFormatList[0])} format={dateFormatList} value ={form.DOB} onChange={handleformchange} />
+                        <DatePicker defaultValue={moment('01/01/2001', dateFormatList[0])} format={dateFormatList} value ={form.DOB} onPanelChange={handleformchange} />
                     </Space>
                 </Form.Item>
                 <Form.Item
@@ -163,7 +162,7 @@ export default function FormComp() {
                     label="Gender"
                     rules={[
                         {
-                            required: true,
+                            required: false,
                             message: 'Please select gender!',
                         },
                     ]}
