@@ -8,7 +8,7 @@ export default function Landing() {
         <div className="Landing">
             <AppHeader />
             <section className="showcase">
-                <img src="/assests/build.jpg" />
+                <img src="/assests/build.jpg" alt='...' />
                 <div className="overlay"></div>
                 <div className="text">
                     <h2>adMISSION Portal </h2>

@@ -3,7 +3,7 @@ import { AppHeader, AppSider, AppFooter } from './components';
 import { SDashBoard, Documents, Calendar, MyApplications, MyQueries } from './pages/student';
 import { Profile } from './pages/common';
 import {
-  BrowserRouter, Route, Switch,useHistory
+ Route, Switch
 } from 'react-router-dom';
 import { Layout } from 'antd';
 import {
@@ -18,8 +18,7 @@ import {
 const { Content } = Layout;
 
 export default function Main() {
-const history=useHistory();
-const loc=history.location['pathname']
+
 let studentSiderData = [
   { title: 'Dashboard', linkTo: `/s/`, icon: <PieChartOutlined />, },
   { title: 'My Applications', linkTo: `/s/myapplications`, icon: <ProfileOutlined />, },
@@ -42,7 +41,7 @@ return (
                 <Route path={`/s/docs`} component={Documents} exact />
                 <Route path={`/s/calendar`} component={Calendar} exact />
                 <Route path={`/s/myqueries`} component={MyQueries} exact />
-                <Route path={`/s/profile`} component={Profile} exact />
+                <Route path={`/s/Profile`} component={Profile} exact />
                 <Route path={`/s`} component={SDashBoard} exact />            
               </Switch>
             </Content>
