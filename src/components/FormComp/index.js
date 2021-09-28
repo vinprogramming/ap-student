@@ -53,39 +53,59 @@ const prefixSelector = (
   </Form.Item>
 );
 
-const apiFunc=()=>{
-    var myHeaders = new Headers();
-    myHeaders.append("id", "2");
-    myHeaders.append("Authorization", "Bearer eyJraWQiOiJ0TEY5aXBDYTdZMFpnSnR4R1g0eFNTZUlaMVY1S05LdWRvSGVqS3JJRUEwPSIsImFsZyI6IlJTMjU2In0.eyJhdF9oYXNoIjoiU1VNMl9UaHF5Um9GeGdjV3AxWnJJUSIsInN1YiI6IjJjNmJkYWUyLWNkMWUtNGIzNi1iZjc5LWFjZDE2ZGY5NjYyMyIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9LMWp4b2NrWlciLCJjb2duaXRvOnVzZXJuYW1lIjoic2hyZXkiLCJhdWQiOiI0djlzMHJudTNnZ2FhdWFnY2lrYmwyYjQ2bCIsImV2ZW50X2lkIjoiMDljNmNmYjQtMjNjYy00YTY1LTkyMjQtNjk1NDA0YzcyYWI3IiwidG9rZW5fdXNlIjoiaWQiLCJhdXRoX3RpbWUiOjE2MzI1NjY5MDcsImV4cCI6MTYzMjU3NDEwNywiaWF0IjoxNjMyNTY2OTA3LCJqdGkiOiJmYTYzZGVhYy00MjVmLTRhZTAtOTkyYy1kOTdlM2ZmYWM1YjEiLCJlbWFpbCI6IjE5aXQwNTlAY2hhcnVzYXQuZWR1LmluIn0.Uvezi6WfVUjI5PhCCW1Jg8WfOyeyNNZh-tQ38rXtGrq6GfEFyoKxnmF9Btb6wjqeZ2g01CAtFncJpJNeBNxrxHyNAdKBvdTxsY5HqrdH8qFwz9vVKjWPJ9ljYRdjC0yYdMSGSsU6v3nFnuQl5f9QMf93nJqd5-UeT_fUMiVM07pJmrfqzr7uvGWkttE-0O9qVxsxkeOxBEbDYcULbuoLsr5JOsCvngXL_KTQJyIs-2yb6w5bGd7EzERGAvq2VSnc2xeoYk62sE-T5YTwdH8AUepR0CTDsREIQJKY-sVxJDqYhjEWA7CdafXxmup7oEod7_Wpbl-k2JcsC34kVRh2dw");
-    myHeaders.append("Content-Type", "application/json");
-    
-    var raw = JSON.stringify({
-      "id": 10,
-      "nationality": "Caucasian",
-      "dob": "20-9-2001",
-      "sex": "Female",
-      "email": "alexa.contact4@gmail.com",
-      "name": "Alexa",
-      "phone": "9144790514"
-    });
-    
-    var requestOptions = {
-      method: 'PUT',
-      headers: myHeaders,
-      body: raw,
-      redirect: 'follow'
-    };
-    
-    fetch("https://m3j6kmp129.execute-api.us-east-1.amazonaws.com/d1/items", requestOptions)
-      .then(response => response.text())
-      .then(result => console.log(result))
-      .catch(error => console.log('error', error));
-}
+
+
+
 export default function FormComp() {
-    const [fname,setFname]=useState('')
+    const [form,setform] = useState({
+        FirstName: '',
+        LastName: '',
+        Phone: '',
+        DOB:'',
+        Gender:'',
+        nationality:'',
+        address:'',
+
+    });
+    const [AggrementCheck,setAggrementCheck] = useState({})
+
+    const handleformchange = event => {
+      setform({
+        ...form,
+        });
+    };
+
+    const apiFunc=(val)=>{
+        console.log(val);
+        var myHeaders = new Headers();
+        myHeaders.append("Authorization", "Bearer eyJraWQiOiJ0TEY5aXBDYTdZMFpnSnR4R1g0eFNTZUlaMVY1S05LdWRvSGVqS3JJRUEwPSIsImFsZyI6IlJTMjU2In0.eyJhdF9oYXNoIjoiTXg3SWJIVTd2a0R4cTNQbUJIYko3QSIsInN1YiI6IjJjNmJkYWUyLWNkMWUtNGIzNi1iZjc5LWFjZDE2ZGY5NjYyMyIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9LMWp4b2NrWlciLCJjb2duaXRvOnVzZXJuYW1lIjoic2hyZXkiLCJhdWQiOiI0djlzMHJudTNnZ2FhdWFnY2lrYmwyYjQ2bCIsImV2ZW50X2lkIjoiZWVlOGZkNTAtZTAxNy00N2QxLWFlMGYtMTZjNzYzYmI3YWFjIiwidG9rZW5fdXNlIjoiaWQiLCJhdXRoX3RpbWUiOjE2MzI4MjE1NDcsImV4cCI6MTYzMjgyODc0NywiaWF0IjoxNjMyODIxNTQ3LCJqdGkiOiJiYWNhYzQ1ZC0zMDk4LTQwNWYtYWI4ZS05Njk0Mzg4N2VkNjAiLCJlbWFpbCI6IjE5aXQwNTlAY2hhcnVzYXQuZWR1LmluIn0.tX4qf2t7oAEk8mbxuYYr7ybDMgn0YjSmMQ-Bko62qsBLvdVET1JTXxG3pM0A1Fb1uQPxQFYthjwt71r9ldub9lWtyK18vJL9Me6_3xZM31YdoN1NZZUYQfjzQqy4S6HztApGmfrF6yYcdy7p608HN4HVy5HgjMu73SRc7UpQdNUfx6eridzz57u_KPCw7OvQhq9rnPaOm52ntLXXrSyAC89mhZMHSRTlICUEM8SAOGgYNyzmu43OQdfTAF5EjjwFkaITaTC9M_UjYDHP3Mbo1b4lsJXLd7_4LOnMe8db0sIktJ7_lNO6-Hbqph-gXpuMUt1qkvnYfI9eMLXgKcM_jA");
+        myHeaders.append("Content-Type", "application/json");
+
+var raw = JSON.stringify({
+  "id": 30,
+  "nationality": val.nationality,
+  "dob": "20-9-2005",
+  "sex": val.Gender,
+  "email": "alexa.contact4@gmail.com",
+  "name": val.firstname,
+  "phone": val.phone,
+});
+
+var requestOptions = {
+  method: 'PUT',
+  headers: myHeaders,
+  body: raw,
+  redirect: 'follow'
+};
+
+fetch("https://m3j6kmp129.execute-api.us-east-1.amazonaws.com/d1/items", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+    }
     return (
         <div>
-            <Form {...formItemLayout} onSubmit={apiFunc}>
+            <Form {...formItemLayout} onFinish={apiFunc}>
                 <Form.Item
                     name="firstname"
                     label="First Name"
@@ -100,7 +120,7 @@ export default function FormComp() {
                         },
                     ]}
                 >
-                    <Input placeholder="First Name" onChange={(e)=>{console.log(e.target.value);setFname(e.target.value)}} />
+                    <Input placeholder="First Name" value = {form.FirstName} onChange= {handleformchange} />
                 </Form.Item>
 
                 <Form.Item
@@ -117,7 +137,7 @@ export default function FormComp() {
                         },
                     ]}
                 >
-                    <Input placeholder="Last Name" />
+                    <Input placeholder="Last Name" value={form.LastName} onChange={handleformchange} />
                 </Form.Item>
                 <Form.Item
                     name="dateofbirth"
@@ -128,13 +148,13 @@ export default function FormComp() {
                             message: 'Enter the DOB',
                         },
                         {
-                            required: true,
+                            required: false,
                             message: 'DOb is required!',
                         },
                     ]}
                 >
                     <Space direction="vertical" size={10}>
-                        <DatePicker defaultValue={moment('01/01/2001', dateFormatList[0])} format={dateFormatList} />
+                        <DatePicker defaultValue={moment('01/01/2001', dateFormatList[0])} format={dateFormatList} value ={form.DOB} onPanelChange={handleformchange} />
                     </Space>
                 </Form.Item>
                 <Form.Item
@@ -142,12 +162,12 @@ export default function FormComp() {
                     label="Gender"
                     rules={[
                         {
-                            required: true,
+                            required: false,
                             message: 'Please select gender!',
                         },
                     ]}
                 >
-                    <Select placeholder="select your gender">
+                    <Select placeholder="select your gender" value={form.Gender} onChange={handleformchange}>
                         <Option value="male">Male</Option>
                         <Option value="female">Female</Option>
                         <Option value="other">Other</Option>
@@ -168,6 +188,8 @@ export default function FormComp() {
                         style={{
                             width: '100%',
                         }}
+                        value={form.Phone}
+                        onChange={handleformchange}
                     />
                 </Form.Item>
                 <Form.Item
@@ -183,7 +205,7 @@ export default function FormComp() {
                             message: 'Please input your nationality!',
                         },
                     ]}>
-                    <Input placeholder="Eg. Indian" />
+                    <Input placeholder="Eg. Indian" value={form.nationality} onChange={handleformchange}/>
                 </Form.Item>
                 <Form.Item
                     name="address"
