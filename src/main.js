@@ -3,7 +3,7 @@ import { AppHeader, AppSider, AppFooter } from './components';
 import { SDashBoard, Documents, Calendar, MyApplications, MyQueries } from './pages/student';
 import { Profile } from './pages/common';
 import {
-  BrowserRouter, Route, Switch,
+  BrowserRouter, Route, Switch,useHistory
 } from 'react-router-dom';
 import { Layout } from 'antd';
 import {
@@ -17,16 +17,19 @@ import {
   
 const { Content } = Layout;
 
-let studentSiderData = [
-    { title: 'Dashboard', linkTo: '/', icon: <PieChartOutlined />, },
-    { title: 'My Applications', linkTo: '/myapplications', icon: <ProfileOutlined />, },
-    { title: 'Documents', linkTo: '/docs', icon: <FileOutlined />, },
-    { title: 'Calendar', linkTo: '/calendar', icon: <CalendarOutlined />, },
-    { title: 'My Queries', linkTo: '/myqueries', icon: <QuestionOutlined />, },
-    { title: 'Profile', linkTo: '/Profile', icon: <UserOutlined />, },
-  ]
 export default function Main() {
-    return (
+const history=useHistory();
+const loc=history.location['pathname']
+let studentSiderData = [
+  { title: 'Dashboard', linkTo: `/s/`, icon: <PieChartOutlined />, },
+  { title: 'My Applications', linkTo: `/s/myapplications`, icon: <ProfileOutlined />, },
+  { title: 'Documents', linkTo: `/s/docs`, icon: <FileOutlined />, },
+  { title: 'Calendar', linkTo: `/s/calendar`, icon: <CalendarOutlined />, },
+  { title: 'My Queries', linkTo: `/s/myqueries`, icon: <QuestionOutlined />, },
+  { title: 'Profile', linkTo: `/s/Profile`, icon: <UserOutlined />, },
+]
+
+return (
         <Layout style={{ minHeight: '100vh' }}>
         <AppHeader />
 
@@ -35,14 +38,12 @@ export default function Main() {
           <Layout style={{ minHeight: '100vh' }}>
             <Content style={{ margin: '0 16px' }}>
               <Switch>
-                <Route path="/myapplications" component={MyApplications} exact />
-                <Route path="/docs" component={Documents} exact />
-                <Route path="/calendar" component={Calendar} exact />
-                <Route path="/myqueries" component={MyQueries} exact />
-                <Route path="/profile" component={Profile} exact />
-                <Route path="/" component={SDashBoard} exact />
-
-            
+                <Route path={`/s/myapplications`} component={MyApplications} exact />
+                <Route path={`/s/docs`} component={Documents} exact />
+                <Route path={`/s/calendar`} component={Calendar} exact />
+                <Route path={`/s/myqueries`} component={MyQueries} exact />
+                <Route path={`/s/profile`} component={Profile} exact />
+                <Route path={`/s`} component={SDashBoard} exact />            
               </Switch>
             </Content>
             <AppFooter />

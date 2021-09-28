@@ -6,7 +6,7 @@ import {
 } from '@ant-design/icons';
 import { Layout } from 'antd';
 import {ProfileEdit,ProfileOther,ProfilePassAndSec} from '../../../containers';
-import {BrowserRouter,Switch,Route} from 'react-router-dom';
+import {BrowserRouter,Switch,Route,useHistory} from 'react-router-dom';
 import './style.css';
 
 let studentProfileData = [
@@ -15,7 +15,9 @@ let studentProfileData = [
   { title: 'Other Settings', linkTo: '/Profile/other', icon: <SettingFilled /> },
 ]
 export default function Profile() {
-
+  const history =useHistory();
+  console.log(history.location['pathname']);
+  
   return (
     <div className="Profile" style={{ marginTop: '2em' }}>
               {/* <BrowserRouter> */}
