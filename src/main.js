@@ -2,18 +2,15 @@
 import { AppHeader, AppSider, AppFooter } from './components';
 import { SDashBoard, Documents, Calendar, MyApplications, MyQueries } from './pages/student';
 import { Profile } from './pages/common';
-import {
- Route, Switch
-} from 'react-router-dom';
+import ProtectedRoute from './Routes/ProtectedRoute'
 import { Layout } from 'antd';
 import {
-    ProfileOutlined,
-    PieChartOutlined,
-    FileOutlined,
-    UserOutlined,
-    CalendarOutlined,
-    QuestionOutlined,
-  } from '@ant-design/icons';
+  BrowserRouter, Switch, Redirect,
+} from 'react-router-dom';
+import {
+    ProfileOutlined, PieChartOutlined,FileOutlined,
+    UserOutlined, CalendarOutlined,QuestionOutlined,
+} from '@ant-design/icons';
   
 const { Content } = Layout;
 
@@ -29,6 +26,7 @@ let studentSiderData = [
 ]
 
 return (
+  <BrowserRouter>
         <Layout style={{ minHeight: '100vh' }}>
         <AppHeader />
 
@@ -37,17 +35,19 @@ return (
           <Layout style={{ minHeight: '100vh' }}>
             <Content style={{ margin: '0 16px' }}>
               <Switch>
-                <Route path={`/s/myapplications`} component={MyApplications} exact />
-                <Route path={`/s/docs`} component={Documents} exact />
-                <Route path={`/s/calendar`} component={Calendar} exact />
-                <Route path={`/s/myqueries`} component={MyQueries} exact />
-                <Route path={`/s/Profile`} component={Profile} exact />
-                <Route path={`/s`} component={SDashBoard} exact />            
+                <ProtectedRoute path={`/s/myapplications`} component={MyApplications} exact />
+                <ProtectedRoute path={`/s/docs`} component={Documents} exact />
+                <ProtectedRoute path={`/s/calendar`} component={Calendar} exact />
+                <ProtectedRoute path={`/s/myqueries`} component={MyQueries} exact />
+                <ProtectedRoute path={`/s/Profile`} component={Profile} exact />
+                <ProtectedRoute path={`/s`} component={SDashBoard} exact />            
+                <Redirect to="/" />
               </Switch>
             </Content>
             <AppFooter />
           </Layout>
         </Layout>
       </Layout>
+      </BrowserRouter>
     )
 }

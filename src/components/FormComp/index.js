@@ -76,34 +76,41 @@ export default function FormComp() {
     };
 
     const apiFunc = (val) => {
-        console.log(val);
-        var myHeaders = new Headers();
-        myHeaders.append("Authorization", "Bearer eyJraWQiOiJ0TEY5aXBDYTdZMFpnSnR4R1g0eFNTZUlaMVY1S05LdWRvSGVqS3JJRUEwPSIsImFsZyI6IlJTMjU2In0.eyJhdF9oYXNoIjoiWTVhZnlabGhDTWFrYnl2WGlXbm5XUSIsInN1YiI6IjJjNmJkYWUyLWNkMWUtNGIzNi1iZjc5LWFjZDE2ZGY5NjYyMyIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9LMWp4b2NrWlciLCJjb2duaXRvOnVzZXJuYW1lIjoic2hyZXkiLCJhdWQiOiI0djlzMHJudTNnZ2FhdWFnY2lrYmwyYjQ2bCIsImV2ZW50X2lkIjoiMGQ4NDkyZWItYjMyOC00ODA3LTlhNWUtYjUyY2IzMzBjYzEzIiwidG9rZW5fdXNlIjoiaWQiLCJhdXRoX3RpbWUiOjE2MzI4MzU3NDAsImV4cCI6MTYzMjg0Mjk0MCwiaWF0IjoxNjMyODM1NzQwLCJqdGkiOiI3Nzk1Nzc1ZC00MTQ3LTQxZmEtOTIzYS00MTY2Njc4N2ZiNGQiLCJlbWFpbCI6IjE5aXQwNTlAY2hhcnVzYXQuZWR1LmluIn0.BWb-MaihUYybJURuWI68QY6YYveBIdV7HqUvHntx_cF1GKTrGDlf5WfrJFMuoZOnEkkC0NeJ84K_-BZbyi2Vb3e0CbVEn7e-9wVDAwNYVkHGOZhtBqwhpZDrJHL6pS8txBQzCyh1YJrL93QSoH4x2NuUzLj810-sG_ruCAz3jqBsZVoCiwZQQHatXAxs_7Difh-wnojsd49C70POe78MXtmnCmVpzodH_egC3pErGR_Z3OrfDPASBwqSmn9-42y7OLNTvE7dJSg-eaBZnwWLWGN71v7gqMgk49jn647e9N5kns0OqYDDFZeOLdcfhZDbvTQxlCvahzNvZW5X43K6mQ");
-        myHeaders.append("Content-Type", "application/json");
+        // console.log(val);
+        if (sessionStorage.getItem('id_token') != null) {
+            const id_token = sessionStorage.getItem('id_token')
+            var myHeaders = new Headers();
+            myHeaders.append("Authorization", `Bearer ${id_token}`);
+            myHeaders.append("Content-Type", "application/json");
 
-        var raw = JSON.stringify({
-            "id": Math.floor(Math.random() * 100000),
-            "nationality": val.nationality,
-            "dob": "20-9-2005",
-            "sex": val.Gender,
-            "email": "alexa.contact4@gmail.com",
-            "name": val.firstname,
-            "phone": val.phone,
-        });
+            var raw = JSON.stringify({
+                "id": Math.floor(Math.random() * 100000),
+                "nationality": val.nationality,
+                "dob": "20-9-2005",
+                "sex": val.Gender,
+                "email": "alexa.contact4@gmail.com",
+                "name": val.firstname,
+                "phone": val.phone,
+            });
 
-        var requestOptions = {
-            method: 'PUT',
-            headers: myHeaders,
-            body: raw,
-            redirect: 'follow'
-        };
+            var requestOptions = {
+                method: 'PUT',
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
+            };
 
-        fetch("https://m3j6kmp129.execute-api.us-east-1.amazonaws.com/d1/items", requestOptions)
-            .then(response => response.text())
-            .then(result => console.log(result))
-            .catch(error => console.log('error', error));
-            
+            fetch("https://m3j6kmp129.execute-api.us-east-1.amazonaws.com/d1/items", requestOptions)
+                .then(response => response.text())
+                .then(result => console.log(result))
+                .catch(error => console.log('error', error));
+
             document.getElementById('ProfileForm').reset();
+        }
+        else{
+            alert("Token Not Present !")
+        }
+
     }
     return (
         <div>

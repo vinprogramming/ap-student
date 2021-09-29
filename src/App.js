@@ -1,18 +1,24 @@
 import './App.css';
 import {
-  BrowserRouter, Route, Switch,
+  BrowserRouter, Route, Switch, Redirect
 } from 'react-router-dom';
-
+import ProtectedRoute from './Routes/ProtectedRoute'
 import Main from './main';
-import {Landing} from './pages/common/';
+import Intermediate from './intermediate';
+import { Landing } from './pages/common/';
+import { UserContextProvider } from './contexts/user';
 function App() {
 
   return (
     <BrowserRouter>
-      <Switch>
-        <Route path='/s' component={Main}/>
-        <Route path='/' component={Landing}/>
-      </Switch>
+      <UserContextProvider>
+        <Switch>
+          <ProtectedRoute path='/s' component={Main} exact />
+          <Route path='/' component={Landing} exact />
+          <Route path='/interm' component={Intermediate} exact />
+          <Redirect to="/" />
+        </Switch>
+      </UserContextProvider>
     </BrowserRouter>
   );
 }

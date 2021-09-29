@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { AppHeader } from '../../../components';
 export default function Landing() {
     const history  = useHistory();
-
+    const hostedUI='https://handlemyadmissions.auth.us-east-1.amazoncognito.com/login?client_id=4v9s0rnu3ggaauagcikbl2b46l&response_type=token&scope=aws.cognito.signin.user.admin+email+openid+phone+profile&redirect_uri=http://localhost:3000/Interm/'
     return (
         <div className="Landing">
             <AppHeader />
@@ -18,7 +18,8 @@ export default function Landing() {
                         quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
                         consequat.</p>
 
-                    <button onClick={() => history.push('/s')}>LETS GO</button>
+                    {/* <button onClick={() => history.push('/s')}>LETS GO</button> */}
+                    <a href={hostedUI}>LETS GO!</a>
                 </div>
             </section>
         </div>
