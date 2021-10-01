@@ -1,3 +1,8 @@
+/**
+ * server as Footer to the main outer layout.
+ * 
+ * Written by : Tejas Ladhani
+ */
 import { Layout } from 'antd';
 const { Footer } = Layout;
 export default function AppFooter() {

@@ -1,3 +1,9 @@
+/**
+ * TODO: Dynamic content
+ * TODO: Make it resuable
+ * TODO: save, edit & display.   
+ * Written By: Shrey Makwana
+ */
 import {
     Form,
     Input,
@@ -67,7 +73,7 @@ export default function FormComp() {
         address: '',
 
     });
-    const [AggrementCheck, setAggrementCheck] = useState({})
+    // const [AggrementCheck, setAggrementCheck] = useState({})
 
     const handleformchange = event => {
         setform({
@@ -107,7 +113,7 @@ export default function FormComp() {
 
             document.getElementById('ProfileForm').reset();
         }
-        else{
+        else {
             alert("Token Not Present !")
         }
 

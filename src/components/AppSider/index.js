@@ -1,3 +1,13 @@
+/**
+ * renders out SideBar for the Application.
+ * Being utilised by Profile & outermost layout (`main.js`)
+ * @param data -data to be rendered (the content === link to other components)
+ * @param haveSubMenu - boolean value , to notify that the caller component need submenu or not.
+ * @param isCollapsible - boolean value, is siderbar need to have collapse button & mechanism
+ * 
+ * Written By : Tejas Ladhani
+ */
+
 import React, { useState } from 'react'
 import {
     NotificationOutlined

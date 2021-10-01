@@ -1,3 +1,13 @@
+/**
+ * SDashboard , is dashboard which will be displayed to the users which are having role===student
+ * can be re-utilised by other components.
+ * 
+ * TODO:  break it into resuable small components.
+ * TODO:  Move notificationContainer to seperate component (already there)
+ * 
+ * Written By : Tejas Ladhani
+ */
+
 import { Row, Col, Layout, Typography,Steps } from 'antd';
 import { DashBoardCard } from '../../../components';
 import { UpdateContainer } from '../../../containers';
