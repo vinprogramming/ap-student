@@ -1,3 +1,10 @@
+/**
+ * Serves as the Profile component for the student as well as admin user.
+ * uses ProfilePicCard, FormComp
+ * 
+ * Written By: Tejas Ladhani
+ */
+
 import {Row,Col,Typography} from 'antd';
 import { FormComp } from '../../components';
 import {ProfilePicCard} from '..';
