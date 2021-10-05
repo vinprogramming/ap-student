@@ -1,5 +1,5 @@
 import React from 'react'
-import {Row,Col} from 'antd';
+import {Row} from 'antd';
 export default function ProfileOther() {
     return (
         <div>

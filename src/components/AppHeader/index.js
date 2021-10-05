@@ -1,3 +1,9 @@
+/**
+ * This component is nothting but the Navbar (Appbar) which will be on the Top section.
+ * Being Utilised by the main.js (outermost layout)
+ * 
+ * Written By : tejas Ladhani
+ */
 import React from 'react'
 import {
   LogoutOutlined,

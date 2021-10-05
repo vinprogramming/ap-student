@@ -1,11 +1,17 @@
+/**
+ * -Utilises the Claendar of ant-d
+ * 
+ * - Returns the data bind with the date [Similar to do]
+ *   this will be dynamically allocated from the DB or server.
+ *   for now its static
+ * 
+ * Written by: Tejas ladhani
+ */
 import { Calendar, Badge } from 'antd';
 import './style.css';
 export default function CCalendar() {
 
     function getListData(value) {
-        // Returns the data bind with the date [Similar to do]
-        //  this will be dynamically allocated from the DB or server.
-        // for now its static.
 
         let listData;
         switch (value.date()) {
