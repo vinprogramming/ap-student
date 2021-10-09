@@ -3,6 +3,7 @@ import "./style.css";
 import { Layout, Row, Tabs, Col, Card, Typography, Button } from "antd";
 import { PlusCircleOutlined } from "@ant-design/icons";
 // import QueryTabs from '../../../components/QueryTabs';
+import Querycard from '../../../containers/QueryCard';
 var tabkey = 0;
 const { TabPane } = Tabs;
 const createnewQuery = (
@@ -16,6 +17,20 @@ const createnewQuery = (
     Create a Query
   </Button>
 );
+const carddata = [
+  {
+    subject: "Regarding Fee Payment",
+    queryid : 10,
+    querydate : "2020-06-01",
+    querytime : "10:00:00",
+    querydesc : "I have to pay the fee for the Application but it shows falied",
+    querystatus : {
+      keyboardtype: "danger",
+      tag : "Pending"
+    },
+    assignee: "Alex",
+  }
+]
 export default function MyQueries() {
   return (
     <div className="myquery">
@@ -26,44 +41,13 @@ export default function MyQueries() {
               <Typography.Title level={2}>My Queries</Typography.Title>
             </div>
           </Col>
-          {/* <Col span={4} offset={18}>
-            <Button
-              id="createquery"
-              type="primary"
-              shape="round"
-              icon={<PlusCircleOutlined />}
-              size="large"
-            >
-              Create a Query
-            </Button>
-          </Col> */}
+    
           <Col span={23}>
             <Tabs tabBarExtraContent={createnewQuery}>
               <TabPane tab="All Queries" key={tabkey++}>
                 <Row>
                   <Col span={24}>
-                    <div className="querycard">
-                      <Card>
-                        <Row>
-                          <Col span={24}>
-                            <div className="">
-                              <Typography.Title level={4}>
-                                Query 2
-                              </Typography.Title>
-                            </div>
-                          </Col>
-                        </Row>
-                        <Row>
-                          <Col span={24}>
-                            <div className="">
-                              <Typography.Title level={5}>
-                                Query 2 Description
-                              </Typography.Title>
-                            </div>
-                          </Col>
-                        </Row>
-                      </Card>
-                    </div>
+                   
                   </Col>
                 </Row>
               </TabPane>
@@ -90,7 +74,16 @@ export default function MyQueries() {
                 <Row>
                   <Col span={24}>
                     <div className="querycard">
-                      <Card title='Subject' size='small'>
+                      <Card size='small'>
+                        <Row>
+                          <Col span={24}>
+                            <div className="">
+                              <Typography.Title level={4}>
+                                Subject
+                              </Typography.Title>
+                            </div>
+                          </Col>
+                        </Row>
                         <Row>
                           <Col span={12}>
                             <div className="cardcontent">
@@ -103,9 +96,9 @@ export default function MyQueries() {
                             </div>
                           </Col>
                           <Col span={4} offset={2}>
-                            <div className="cardcontent">
+                        
                               <Typography.Text type='secondary'>Assigned TO</Typography.Text>
-                            </div>
+            
                           </Col>
                         </Row>
                       </Card>
