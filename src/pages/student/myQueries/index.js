@@ -26,7 +26,8 @@ const Carddata = [
     querydesc : "I have to pay the fee for the Application but it shows falied",
     querystatus : {
       keyboardtype: "danger",
-      tag : "Pending"
+      tag : "Solved",
+      status : 1
     },
     assignee: "Alex",
   },
@@ -38,7 +39,8 @@ const Carddata = [
     querydesc : "I have tried to submit Application but it shows falied",
     querystatus : {
       keyboardtype: "danger",
-      tag : "Pending"
+      tag : "Pending",
+      status : 0,
     },
     assignee: "Alex",
   }
@@ -48,6 +50,7 @@ export default function MyQueries() {
     <div className="myquery">
       <Layout>
         <Row>
+
           <Col span={20}>
             <div className="myquery_TopTitle">
               <Typography.Title level={2}>My Queries</Typography.Title>
@@ -63,58 +66,19 @@ export default function MyQueries() {
                   </Col>
                 </Row>
               </TabPane>
+
               <TabPane tab="Solved" key={tabkey++}>
                 <Row>
                   <Col span={24}>
-                    <div className="querycard">
-                      <Card>
-                        <Row>
-                          <Col span={24}>
-                            <div className="">
-                              <Typography.Title level={4}>
-                                Solved
-                              </Typography.Title>
-                            </div>
-                          </Col>
-                        </Row>
-                      </Card>
-                    </div>
-                  </Col>
+                    {Carddata.map(data => data.querystatus.status ?<Querycard querycarddata={data}/>: null)}
+                  </Col> 
                 </Row>
               </TabPane>
+
               <TabPane tab="Pending" key={tabkey++}>
                 <Row>
                   <Col span={24}>
-                    <div className="querycard">
-                      <Card size='small'>
-                        <Row>
-                          <Col span={24}>
-                            <div className="">
-                              <Typography.Title level={4}>
-                                Subject
-                              </Typography.Title>
-                            </div>
-                          </Col>
-                        </Row>
-                        <Row>
-                          <Col span={12}>
-                            <div className="cardcontent">
-                              <Typography.Text strong>this is the description of the query that you have submitted</Typography.Text>
-                            </div>
-                          </Col>
-                          <Col span={4} offset={2}>
-                            <div className="cardcontent">
-                              <Typography.Text keyboard type='danger' >Status</Typography.Text>
-                            </div>
-                          </Col>
-                          <Col span={4} offset={2}>
-                        
-                              <Typography.Text type='secondary'>Assigned TO</Typography.Text>
-            
-                          </Col>
-                        </Row>
-                      </Card>
-                    </div>
+                    {Carddata.map(data => data.querystatus.status ?null :<Querycard querycarddata={data}/>)}
                   </Col>
                 </Row>
               </TabPane>
