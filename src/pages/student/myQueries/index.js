@@ -17,7 +17,7 @@ const createnewQuery = (
     Create a Query
   </Button>
 );
-const carddata = [
+const Carddata = [
   {
     subject: "Regarding Fee Payment",
     queryid : 10,
@@ -29,8 +29,20 @@ const carddata = [
       tag : "Pending"
     },
     assignee: "Alex",
+  },
+  {
+    subject: "Regarding Application submission",
+    queryid : 20,
+    querydate : "2021-06-01",
+    querytime : "10:50:00",
+    querydesc : "I have tried to submit Application but it shows falied",
+    querystatus : {
+      keyboardtype: "danger",
+      tag : "Pending"
+    },
+    assignee: "Alex",
   }
-]
+];
 export default function MyQueries() {
   return (
     <div className="myquery">
@@ -47,7 +59,7 @@ export default function MyQueries() {
               <TabPane tab="All Queries" key={tabkey++}>
                 <Row>
                   <Col span={24}>
-                   
+                  { Carddata.map(data => <Querycard querycarddata={data}/>)}
                   </Col>
                 </Row>
               </TabPane>
