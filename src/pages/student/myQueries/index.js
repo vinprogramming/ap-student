@@ -4,19 +4,15 @@ import { Layout, Row, Tabs, Col, Card, Typography, Button } from "antd";
 import { PlusCircleOutlined } from "@ant-design/icons";
 // import QueryTabs from '../../../components/QueryTabs';
 import Querycard from '../../../containers/QueryCard';
+import CreateQuery from '../../../containers/CreateQuery';
+import { Switch, Route, useHistory,BrowserRouter } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 var tabkey = 0;
 const { TabPane } = Tabs;
-const createnewQuery = (
-  <Button
-    id="createquery"
-    type="primary"
-    shape="round"
-    icon={<PlusCircleOutlined />}
-    size="medium"
-  >
-    Create a Query
-  </Button>
-);
+
+
+
+
 const Carddata = [
   {
     subject: "Regarding Fee Payment",
@@ -45,9 +41,27 @@ const Carddata = [
     assignee: "Alex",
   }
 ];
+
 export default function MyQueries() {
+  const history = useHistory();
+  
+  const createnewQuery = (
+    <Button
+      id="createquery"
+      type="primary"
+      shape="round"
+      icon={<PlusCircleOutlined />}
+      size="medium"
+      onClick={() => {
+        history.push('/s/myqueries/createquery'); //redirect to create query page
+      }}
+    >
+      Create a Query
+    </Button>
+  );
   return (
     <div className="myquery">
+    <BrowserRouter>
       <Layout>
         <Row>
 
@@ -58,7 +72,7 @@ export default function MyQueries() {
           </Col>
     
           <Col span={23}>
-            <Tabs tabBarExtraContent={createnewQuery}>
+          <Tabs tabBarExtraContent={createnewQuery}>
               <TabPane tab="All Queries" key={tabkey++}>
                 <Row>
                   <Col span={24}>
@@ -86,6 +100,7 @@ export default function MyQueries() {
           </Col>
         </Row>
       </Layout>
+      </BrowserRouter>
     </div>
   );
 }
