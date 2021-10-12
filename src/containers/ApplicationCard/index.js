@@ -5,6 +5,7 @@
 
 import { Typography } from 'antd';
 import { Subcard, ApplicationDownloadPanel, ApplicationSteps } from '../../components';
+import {Link} from 'react-router-dom';
 import './style.css';
 
 export default function ApplicationCard({ title, subCardData, downloadPanelData, setpsData }) {
@@ -12,7 +13,9 @@ export default function ApplicationCard({ title, subCardData, downloadPanelData,
         <div className="ApplicationCard">
             <div className="ApplicationCard_inner">
                 <div className="ApplicationCard_Title">
-                    <Typography.Title level={4}>{title}</Typography.Title>
+                    <Link to={`/s/myapplications/${ title+ 1}`}>
+                        <Typography.Title level={4}>{title}</Typography.Title>
+                    </Link>
                 </div>
                 <div className="ApplicationCard_Details_SubCards_Container">
                     {

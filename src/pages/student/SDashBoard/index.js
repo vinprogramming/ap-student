@@ -13,7 +13,12 @@ import { DashBoardCard } from '../../../components';
 import { UpdateContainer } from '../../../containers';
 import './style.css';
 export default function SDashBoard() {
-
+    const UserName=()=>{
+        const temp=JSON.parse(sessionStorage.getItem('u_decoded'))
+        // console.log(temp['cognito:username'])
+        return temp['cognito:username'];
+    }
+    
     return (
         <div className="SDashboard" style={{ marginTop: '1.5em' }}>
             <Layout style={{ minHeight: '85vh' }}>
@@ -21,7 +26,7 @@ export default function SDashBoard() {
                     <Col xs={24} xl={24}>
                         <div className="SDashboard_TopTitle">
                             <Typography.Title level={3}>
-                                Greetings [Username] !
+                                Greetings {UserName().toUpperCase()} !
                             </Typography.Title>
                         </div>
                     </Col>

@@ -7,44 +7,11 @@
 import {
     Form,
     Input,
-    DatePicker,
-    Space,
     Select,
-    Checkbox,
     Button,
 } from 'antd';
-// import moment from 'moment';
 import { useState } from 'react';
-const formItemLayout = {
-    //   labelCol: {
-    //     xs: {
-    //       span: 8,
-    //     },
-    //     sm: {
-    //       span: 8,
-    //     },
-    //   },
-    //   wrapperCol: {
-    //     xs: {
-    //       span: 16,
-    //     },
-    //     sm: {
-    //       span: 8,
-    //     },
-    //   },
-};
-const tailFormItemLayout = {
-    //   wrapperCol: {
-    //     xs: {
-    //       span: 24,
-    //       offset: 0,
-    //     },
-    //     sm: {
-    //       span: 16,
-    //       offset: 8,
-    //     },
-    //   },
-};
+
 const { Option } = Select;
 const dateFormatList = ['DD/MM/YYYY'];
 const prefixSelector = (
@@ -59,94 +26,6 @@ const prefixSelector = (
     </Form.Item>
 );
 
-const data = [
-    {
-        name: 'firstname',
-        label: 'First Name',
-        rules: [
-            {
-                type: 'string',
-                message: 'Must not contain numbers and special characters',
-            },
-            {
-                required: true,
-                message: 'Please input your name!',
-            },
-        ],
-        haveOption: false,
-
-    },
-    {
-        name: 'lastname',
-        label: 'Last Name',
-        rules: [
-            {
-                type: 'string',
-                message: 'Must not contain numbers and special characters',
-            },
-            {
-                required: true,
-                message: 'Please input your name!',
-            },
-        ],
-        haveOption: false,
-    },
-    {
-        name: 'dateofbirth',
-        label: 'Date of Birth',
-        rules: [
-            {
-                type: 'date',
-                message: 'Enter the DOB',
-            },
-            {
-                required: false,
-                message: 'DOb is required!',
-            },
-        ],
-        haveOption: false,
-    },
-    {
-        name: 'gender',
-        label: 'Gender',
-        rules: [
-            {
-                required: false,
-                message: 'Please select gender!',
-            },
-        ],
-        haveOption: true,
-        options: ['Male', 'Female', 'Other'],
-
-    },
-    {
-        name: 'phone',
-        label: 'Phone Number',
-        rules: [
-            {
-                required: true,
-                message: 'Please input your phone number!',
-            },
-        ],
-        haveOption: false,
-    },
-    {
-        name: 'Nationality',
-        label: 'Nationality',
-        rules: [
-            {
-                type: 'string',
-                message: 'Must not contain numbers and special characters',
-            },
-            {
-                required: true,
-                message: 'Please input your nationality!',
-            },
-        ],
-
-    },
-
-]
 
 // helper function
 function camelCase(str) {
@@ -156,18 +35,8 @@ function camelCase(str) {
 }
 
 
-export default function FormComp({from}) {
-    // keep key in CamaleCase 
-    const [form, setform] = useState({
-        FirstName: '',
-        LastName: '',
-        Phone: '',
-        DOB: '',
-        Gender: '',
-        Nationality: '',
-        Address: '',
-
-    });
+export default function FormComp({ from, data, apiFunc, formState }) {
+    const [form, setform] = useState(formState);
 
     const handleformchange = event => {
         setform({
@@ -175,46 +44,10 @@ export default function FormComp({from}) {
         });
     };
 
-    const apiFunc = (val) => {
-        // console.log(val);
-        if (sessionStorage.getItem('id_token') != null) {
-            const id_token = sessionStorage.getItem('id_token')
-            var myHeaders = new Headers();
-            myHeaders.append("Authorization", `Bearer ${id_token}`);
-            myHeaders.append("Content-Type", "application/json");
 
-            var raw = JSON.stringify({
-                "id": Math.floor(Math.random() * 100000),
-                "nationality": val.nationality,
-                "dob": "20-9-2005",
-                "sex": val.Gender,
-                "email": "alexa.contact4@gmail.com",
-                "name": val.firstname,
-                "phone": val.phone,
-            });
-
-            var requestOptions = {
-                method: 'PUT',
-                headers: myHeaders,
-                body: raw,
-                redirect: 'follow'
-            };
-
-            fetch("https://m3j6kmp129.execute-api.us-east-1.amazonaws.com/d1/items", requestOptions)
-                .then(response => response.text())
-                .then(result => console.log(result))
-                .catch(error => console.log('error', error));
-
-            document.getElementById('ProfileForm').reset();
-        }
-        else {
-            alert("Token Not Present !")
-        }
-
-    }
     return (
         <div>
-            <Form {...formItemLayout} onFinish={apiFunc} id="ProfileForm">
+            <Form onFinish={apiFunc} id="ProfileForm">
                 {
                     data.map((item) => {
                         return (
@@ -353,7 +186,7 @@ export default function FormComp({from}) {
                     <Input />
                 </Form.Item> */}
 
-                <Form.Item {...tailFormItemLayout}>
+                <Form.Item >
                     <Button type="primary" htmlType="submit">
                         Save
                     </Button>
