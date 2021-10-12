@@ -1,5 +1,5 @@
 
-import { AppHeader, AppSider, AppFooter } from './components';
+import { AppHeader, AppSider, AppFooter, FormComp } from './components';
 import { SDashBoard, Documents, Calendar, MyApplications, MyQueries } from './pages/student';
 import { Profile } from './pages/common';
 import ProtectedRoute from './Routes/ProtectedRoute'
@@ -40,6 +40,7 @@ return (
                 <ProtectedRoute path={`/s/calendar`} component={Calendar} exact />
                 <ProtectedRoute path={`/s/myqueries`} component={MyQueries} exact />
                 <ProtectedRoute path={`/s/Profile`} component={Profile} exact />
+                <ProtectedRoute path="/s/myapplications/:ApplicationId" component={FormComp} />
                 <ProtectedRoute path={`/s`} component={SDashBoard} exact />            
                 <Redirect to="/" />
               </Switch>
