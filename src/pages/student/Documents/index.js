@@ -17,7 +17,8 @@ export default function Documents() {
     name: 'file',
     accept: '.pdf',
     multiple: false,
-    customRequest: (e)=>{console.log('aha')},
+    request:'',
+    // customRequest: (e)=>{console.log('aha')},
     onChange(info) {
       console.log(info)
       const { status } = info.file;
