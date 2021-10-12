@@ -24,7 +24,7 @@ export default function ProfileEdit() {
                   <div/>
                 </Col>
                 <Col xl={16} xs={24}>
-                  <FormComp />
+                  <FormComp from={'profile'}/>
                 </Col>
               </Row>  
         </>

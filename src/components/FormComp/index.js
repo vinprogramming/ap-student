@@ -13,7 +13,7 @@ import {
     Checkbox,
     Button,
 } from 'antd';
-import moment from 'moment';
+// import moment from 'moment';
 import { useState } from 'react';
 const formItemLayout = {
     //   labelCol: {
@@ -59,21 +59,115 @@ const prefixSelector = (
     </Form.Item>
 );
 
+const data = [
+    {
+        name: 'firstname',
+        label: 'First Name',
+        rules: [
+            {
+                type: 'string',
+                message: 'Must not contain numbers and special characters',
+            },
+            {
+                required: true,
+                message: 'Please input your name!',
+            },
+        ],
+        haveOption: false,
+
+    },
+    {
+        name: 'lastname',
+        label: 'Last Name',
+        rules: [
+            {
+                type: 'string',
+                message: 'Must not contain numbers and special characters',
+            },
+            {
+                required: true,
+                message: 'Please input your name!',
+            },
+        ],
+        haveOption: false,
+    },
+    {
+        name: 'dateofbirth',
+        label: 'Date of Birth',
+        rules: [
+            {
+                type: 'date',
+                message: 'Enter the DOB',
+            },
+            {
+                required: false,
+                message: 'DOb is required!',
+            },
+        ],
+        haveOption: false,
+    },
+    {
+        name: 'gender',
+        label: 'Gender',
+        rules: [
+            {
+                required: false,
+                message: 'Please select gender!',
+            },
+        ],
+        haveOption: true,
+        options: ['Male', 'Female', 'Other'],
+
+    },
+    {
+        name: 'phone',
+        label: 'Phone Number',
+        rules: [
+            {
+                required: true,
+                message: 'Please input your phone number!',
+            },
+        ],
+        haveOption: false,
+    },
+    {
+        name: 'Nationality',
+        label: 'Nationality',
+        rules: [
+            {
+                type: 'string',
+                message: 'Must not contain numbers and special characters',
+            },
+            {
+                required: true,
+                message: 'Please input your nationality!',
+            },
+        ],
+
+    },
+
+]
+
+// helper function
+function camelCase(str) {
+    return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
+        return index == 0 ? word.toLowerCase() : word.toUpperCase();
+    }).replace(/\s+/g, '');
+}
 
 
-
-export default function FormComp() {
+export default function FormComp({from}) {
+    // keep key in CamaleCase 
     const [form, setform] = useState({
         FirstName: '',
         LastName: '',
         Phone: '',
         DOB: '',
         Gender: '',
-        nationality: '',
-        address: '',
+        Nationality: '',
+        Address: '',
 
     });
-    // const [AggrementCheck, setAggrementCheck] = useState({})
 
     const handleformchange = event => {
         setform({
@@ -121,7 +215,29 @@ export default function FormComp() {
     return (
         <div>
             <Form {...formItemLayout} onFinish={apiFunc} id="ProfileForm">
-                <Form.Item
+                {
+                    data.map((item) => {
+                        return (
+                            <Form.Item
+                                name={item.name}
+                                label={item.label}
+                                rules={item.rules}
+                            >
+                                {!item.haveOption ?
+                                    <Input placeholder={item.label} value={form[camelCase(item.name)]} onChange={handleformchange} />
+                                    :
+                                    <Select placeholder="select your gender" value={form.Gender} onChange={handleformchange}>
+                                        {
+                                            item.options.map((i) => <Option value={i}>{i}</Option>)
+                                        }
+                                    </Select>
+                                }
+
+                            </Form.Item>
+                        )
+                    })
+                }
+                {/* <Form.Item
                     name="firstname"
                     label="First Name"
                     rules={[
@@ -169,7 +285,7 @@ export default function FormComp() {
                     ]}
                 >
                     <Space direction="vertical" size={10}>
-                        <DatePicker defaultValue={moment('01/01/2001', dateFormatList[0])} format={dateFormatList} value={form.DOB} onPanelChange={handleformchange} />
+                        <DatePicker format={dateFormatList} value={form.DOB} onPanelChange={handleformchange} />
                     </Space>
                 </Form.Item>
                 <Form.Item
@@ -235,16 +351,8 @@ export default function FormComp() {
                         }
                     ]}>
                     <Input />
-                </Form.Item>
-                <Form.Item
-                    name="Agreement"
-                    valuePropName="checked"
-                    {...tailFormItemLayout}
-                >
-                    <Checkbox>
-                        I have read the <a href="/">Agreement</a>
-                    </Checkbox>
-                </Form.Item>
+                </Form.Item> */}
+
                 <Form.Item {...tailFormItemLayout}>
                     <Button type="primary" htmlType="submit">
                         Save
