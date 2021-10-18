@@ -14,7 +14,7 @@ const { Title } = Typography;
 
 export default function ProfileEdit() {
   const [user, setUser] = useContext(UserContext);
-  const userData = JSON.parse(user)
+  const userData = JSON.parse(user);
   const apiFunc = (val) => {
     // console.log(val);
     if (sessionStorage.getItem('id_token') != null) {
@@ -24,12 +24,12 @@ export default function ProfileEdit() {
       myHeaders.append("Content-Type", "application/json");
 
       var raw = JSON.stringify({
-        "id": Math.floor(Math.random() * 100000),
+        "email": userData['email'],
         "nationality": val.nationality,
         "dob": "20-9-2005",
-        "sex": val.Gender,
-        "email": userData['email'],
+        "gender": val.Gender,
         "name": val.firstname,
+        "lastname" : val.lastname,
         "phone": val.phone,
       });
 
