@@ -1,6 +1,6 @@
 
-import { AppHeader, AppSider, AppFooter, FormComp } from './components';
-import { SDashBoard, Documents, Calendar, MyApplications, MyQueries } from './pages/student';
+import { AppHeader, AppSider, AppFooter, FormComp, } from './components';
+import { SDashBoard, Documents, Calendar, MyApplications, MyQueries, Application } from './pages/student';
 import { Profile } from './pages/common';
 import ProtectedRoute from './Routes/ProtectedRoute'
 import { Layout } from 'antd';
@@ -41,7 +41,7 @@ return (
                 <ProtectedRoute path={`/s/myqueries`} component={MyQueries} exact />
                 <ProtectedRoute path={`/s/myqueries/createquery`} component={CreateQuery} exact />
                 <ProtectedRoute path={`/s/Profile`} component={Profile} exact />
-                <ProtectedRoute path="/s/myapplications/:ApplicationId" component={FormComp} />
+                <ProtectedRoute path="/s/myapplications/:ApplicationId" component={Application} />
                 <ProtectedRoute path={`/s`} component={SDashBoard} exact />            
                 <Redirect to="/" />
               </Switch>

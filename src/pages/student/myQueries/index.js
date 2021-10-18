@@ -3,7 +3,7 @@ import "./style.css";
 import { Layout, Row, Tabs, Col, Card, Typography, Button } from "antd";
 import { PlusCircleOutlined } from "@ant-design/icons";
 // import QueryTabs from '../../../components/QueryTabs';
-import Querycard from '../../../containers/QueryCard';
+import {QueryCard} from '../../../containers';
 import CreateQuery from '../../../containers/CreateQuery';
 import { Switch, Route, useHistory,BrowserRouter } from 'react-router-dom';
 import { useState, useEffect } from 'react';
@@ -76,7 +76,7 @@ export default function MyQueries() {
               <TabPane tab="All Queries" key={tabkey++}>
                 <Row>
                   <Col span={24}>
-                  { Carddata.map(data => <Querycard querycarddata={data}/>)}
+                  { Carddata.map(data => <QueryCard queryCarddata={data}/>)}
                   </Col>
                 </Row>
               </TabPane>
@@ -84,7 +84,7 @@ export default function MyQueries() {
               <TabPane tab="Solved" key={tabkey++}>
                 <Row>
                   <Col span={24}>
-                    {Carddata.map(data => data.querystatus.status ?<Querycard querycarddata={data}/>: null)}
+                    {Carddata.map(data => data.querystatus.status ?<QueryCard queryCarddata={data}/>: null)}
                   </Col> 
                 </Row>
               </TabPane>
@@ -92,7 +92,7 @@ export default function MyQueries() {
               <TabPane tab="Pending" key={tabkey++}>
                 <Row>
                   <Col span={24}>
-                    {Carddata.map(data => data.querystatus.status ?null :<Querycard querycarddata={data}/>)}
+                    {Carddata.map(data => data.querystatus.status ?null :<QueryCard queryCarddata={data}/>)}
                   </Col>
                 </Row>
               </TabPane>
