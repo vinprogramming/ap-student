@@ -52,7 +52,7 @@ export default function MyQueries() {
         },
         "subject": val.subject,
         "assignee": "Alex",
-        "querytimestamp": new Date().toLocaleDateString(),
+        "querytimestamp": new Date().toLocaleTimeString(),
         "querydesc": val.description,
         "queryid": 10
       }
