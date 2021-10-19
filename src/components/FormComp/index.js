@@ -8,9 +8,11 @@ import {
     Form,
     Input,
     Select,
+    TextArea,
     Button,
 } from 'antd';
 import { useState } from 'react';
+import './style.css';
 
 const { Option } = Select;
 const dateFormatList = ['DD/MM/YYYY'];
@@ -57,7 +59,7 @@ export default function FormComp({ from, data, apiFunc, formState }) {
                             rules={item.rules}
                         >
                             {!item.haveOption ?
-                                <Input placeholder={item.label} value={form[camelCase(item.name)]} onChange={handleformchange} />
+                                <Input.TextArea placeholder={item.label} value={form[camelCase(item.name)]} onChange={handleformchange} rows={item.isDescriptive?4:1} />
                                 :
                                 <Select placeholder="select your gender" value={form.Gender} onChange={handleformchange}>
                                     {
@@ -65,6 +67,7 @@ export default function FormComp({ from, data, apiFunc, formState }) {
                                     }
                                 </Select>
                             }
+                            
 
                         </Form.Item>
                     )

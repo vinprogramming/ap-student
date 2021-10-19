@@ -6,16 +6,26 @@ import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { UserContext } from '../../../contexts/user'
 import { QueryCard } from '../../../containers';
+import { FormComp } from "../../../components";
+import { data } from './ModalConfig';
 
 var tabkey = 0;
 const { TabPane } = Tabs;
 
+const getTodaysDate = () => {
+  var today = new Date();
+  var dd = String(today.getDate()).padStart(2, '0');
+  var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  var yyyy = today.getFullYear();
 
+  return today = dd + '-' + mm + '-' + yyyy;
+}
 export default function MyQueries() {
   const [user, setUser] = useContext(UserContext);
   const userData = JSON.parse(user);
   const history = useHistory();
   const [QueryList, setQueryList] = useState()
+  const [countUpdate, setcountUpdate] = useState(0)
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const showModal = () => {
@@ -29,6 +39,48 @@ export default function MyQueries() {
   const handleCancel = () => {
     setIsModalVisible(false);
   };
+
+  const ApiFunc = (val) => {
+    var data = JSON.stringify({
+      "email": userData['email'],
+      "qObj": {
+        "querydate": getTodaysDate(),
+        "querystatus": {
+          "keyboardtype": "danger",
+          "tag": "UnSolved",
+          "status": 0
+        },
+        "subject": val.subject,
+        "assignee": "Alex",
+        "querytimestamp": new Date().toLocaleDateString(),
+        "querydesc": val.description,
+        "queryid": 10
+      }
+    });
+
+    var config = {
+      method: 'put',
+      url: 'https://m3j6kmp129.execute-api.us-east-1.amazonaws.com/d1/studentqueries',
+      headers: {
+        'Authorization': `Bearer ${sessionStorage.getItem('id_token')}`,
+        'Content-Type': 'application/json'
+      },
+      data: data
+    };
+
+    axios(config)
+      .then(function (response) {
+        document.getElementById('ProfileForm').reset();
+        console.log(JSON.stringify(response.data));
+        setcountUpdate(countUpdate + 1)
+        handleCancel()
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+  }
+
 
 
   useEffect(() => {
@@ -52,7 +104,7 @@ export default function MyQueries() {
         console.log(error);
       });
 
-  }, [])
+  }, [countUpdate])
   const createnewQuery = (
     <Button
       id="createquery"
@@ -66,6 +118,8 @@ export default function MyQueries() {
     </Button>
   );
   console.log(QueryList);
+
+
 
   return (
     <div className="myquery">
@@ -108,10 +162,11 @@ export default function MyQueries() {
             </Col>
           </Row>
         </Layout>
-        <Modal title="Basic Modal" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
-          <p>Some contents...</p>
-          <p>Some contents...</p>
-          <p>Some contents...</p>
+        <Modal title="Create Your Query" visible={isModalVisible} m footer={null} onOk={handleOk} onCancel={handleCancel}>
+          <FormComp from={'myQueries'} data={data} apiFunc={ApiFunc} formState={{
+            Subject: '',
+            Description: '',
+          }} />
         </Modal>
       </BrowserRouter>
     </div>
