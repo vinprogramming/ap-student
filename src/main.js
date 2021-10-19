@@ -11,7 +11,6 @@ import {
     ProfileOutlined, PieChartOutlined,FileOutlined,
     UserOutlined, CalendarOutlined,QuestionOutlined,
 } from '@ant-design/icons';
-import CreateQuery from './containers/CreateQuery';
 const { Content } = Layout;
 
 export default function Main() {
@@ -39,7 +38,6 @@ return (
                 <ProtectedRoute path={`/s/docs`} component={Documents} exact />
                 <ProtectedRoute path={`/s/calendar`} component={Calendar} exact />
                 <ProtectedRoute path={`/s/myqueries`} component={MyQueries} exact />
-                <ProtectedRoute path={`/s/myqueries/createquery`} component={CreateQuery} exact />
                 <ProtectedRoute path={`/s/Profile`} component={Profile} exact />
                 <ProtectedRoute path="/s/myapplications/:ApplicationId" component={Application} />
                 <ProtectedRoute path={`/s`} component={SDashBoard} exact />            
