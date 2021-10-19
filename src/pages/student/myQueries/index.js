@@ -54,7 +54,7 @@ export default function MyQueries() {
       
       var config = {
         method: 'get',
-        url: 'https://m3j6kmp129.execute-api.us-east-1.amazonaws.com/d1/studentqueries?email=19it058@charusat.edu.in',
+        url: `https://m3j6kmp129.execute-api.us-east-1.amazonaws.com/d1/studentqueries?email=${userData['email']}`,
         headers: {
           'email': userData['email'],
           'Authorization':sessionStorage.getItem('id_token')?sessionStorage.getItem('id_token'):'',
@@ -62,6 +62,7 @@ export default function MyQueries() {
 
       axios(config)
         .then(function (response) {
+          console.log(response)
           setQueryList(response.data.response.queries)
         })
         .catch(function (error) {
