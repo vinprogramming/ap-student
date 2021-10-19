@@ -3,58 +3,34 @@ import {
   EditFilled,
   SafetyCertificateFilled,
   SettingFilled,
+  UserOutlined
 } from '@ant-design/icons';
-import { Layout } from 'antd';
-import { ProfileEdit, ProfileOther, ProfilePassAndSec } from '../../../containers';
-import { Switch, Route, useHistory,BrowserRouter } from 'react-router-dom';
+import { Layout,Tabs } from 'antd';
+import { ProfileDisplay, ProfileEdit, ProfileOther, ProfilePassAndSec } from '../../../containers';
+import { Switch, Route, useHistory, BrowserRouter, Redirect } from 'react-router-dom';
 import './style.css';
 import { useState, useEffect } from 'react';
-
+const { TabPane } = Tabs;
 let studentProfileData = [
-  { title: 'Edit Profile', linkTo: '/s/Profile/edit', icon: <EditFilled /> },
-  { title: 'Password & Security', linkTo: '/s/Profile/passAndsecurity', icon: <SafetyCertificateFilled /> },
-  { title: 'Other Settings', linkTo: '/s/Profile/other', icon: <SettingFilled /> },
+  { title: 'Profile', component:<ProfileDisplay/> , icon: <UserOutlined /> },
+  { title: 'Edit Profile', component:<ProfileEdit/> , icon: <EditFilled /> },
+  { title: 'Password & Security', component: <ProfilePassAndSec/>, icon: <SafetyCertificateFilled /> },
+  { title: 'Other Settings', component: <ProfileOther/>, icon: <SettingFilled /> },
 ]
 
 export default function Profile() {
-  const history = useHistory();
-  console.log(history.location['pathname']);
-  const [RouteState, setRouteState] = useState(history.location['pathname']);
-  useEffect(() => {
-    setRouteState(history.location['pathname']);
-  }, [history.location])
 
-  const handleRouteChange = () => {
-    switch (RouteState) {
-      case '/s/Profile/edit':
-        return <ProfileEdit />
-      case '/s/Profile/passAndsecurity':
-        return <ProfilePassAndSec />
-      case '/s/Profile/other':
-        return <ProfileOther />
-      default:
-        return <div />;
-    }
-  }
-  let compToBeRendered = handleRouteChange();
   return (
     <div className="Profile" style={{ marginTop: '2em' }}>
       <BrowserRouter>
         <Layout>
-          <Layout style={{ minHeight: '100vh' }}>
-            <AppSider data={studentProfileData} haveSubMenu={false} isCollapsible={false} />
-            <Layout style={{ minHeight: '100vh' }}>
-              <Layout.Content style={{ margin: '0 16px', backgroundColor: 'white' }}>
-                {/* <ProfileEdit /> */}
-                <Switch>
-                  <Route path="/s/Profile/edit" component={ProfileEdit} exact />
-                  <Route path="/s/Profile/passAndsecurity" component={ProfilePassAndSec} exact />
-                  <Route path="/s/Profile/other" component={ProfileOther} exact />
-                </Switch>
-
-              </Layout.Content>
-            </Layout>
-          </Layout>
+          <Tabs defaultActiveKey="1" tabPosition="left" style={{ minHeight: '80vh'}} type="card">
+            {studentProfileData.map(i => (
+              <TabPane tab={<span>{i.icon}{i.title}</span>} key={i.title}>
+                {i.component}
+              </TabPane>
+            ))}
+          </Tabs>
         </Layout>
       </BrowserRouter>
 
