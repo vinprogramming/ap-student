@@ -1,3 +1,8 @@
+/*
+This is query card container, 
+accepts querydata and renders a card with data.
+Written by Shrey Makwana
+*/
 import React from "react";
 import { Typography, Row, Col, Card } from "antd";
 export default function QueryCard({queryCarddata}) {

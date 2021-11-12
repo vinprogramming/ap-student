@@ -9,6 +9,7 @@ import { QueryCard } from '../../../containers';
 import { FormComp } from "../../../components";
 import { data } from './ModalConfig';
 
+
 var tabkey = 0;
 const { TabPane } = Tabs;
 
