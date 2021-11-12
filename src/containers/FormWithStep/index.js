@@ -146,7 +146,7 @@ export default function FormWithStep() {
         console.log(error);
       });
   }, [current]);
-  
+
   return (
     <div className="FormWithSteps">
       <Steps current={current}>
