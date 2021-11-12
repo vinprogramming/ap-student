@@ -12,24 +12,48 @@ import { InboxOutlined } from '@ant-design/icons';
 
 export default function Documents() {
   const { Dragger } = Upload;
-
+  const [selectedFile, setselectedFile] = useState()
+  const CustomRequest=(e)=>{
+    const formData = new FormData();
+    formData.append('File', selectedFile);
+    console.log(formData);
+  }
+  const handleChange = (e) => {
+    if (e.target.files[0]) //if user has selected multiple files, we want 1st one only.
+    {
+      setselectedFile(e.target.files[0])
+    }
+  }
   const props = {
     name: 'file',
     accept: '.pdf',
+    headers:{
+      "content-type":"application/pdf",
+    },
     multiple: false,
-    request:'',
-    // customRequest: (e)=>{console.log('aha')},
+    action:"https://m3j6kmp129.execute-api.us-east-1.amazonaws.com/d1/studentupload",
+    // customRequest:(e)=>{
+    //   const formData = new FormData();
+    //   formData.append('File', selectedFile);
+    //   console.log(formData);
+    //   fetch(
+    //     'https://m3j6kmp129.execute-api.us-east-1.amazonaws.com/d1/studentupload',
+    //     {
+    //       method: 'POST',
+    //       body: JSON.stringify(formData),
+    //     }
+    //   )
+    //     .then((response) => response)
+    //     .then((result) => {
+    //       console.log('Success:', result);
+    //     })
+    //     .catch((error) => {
+    //       console.error('Error:', error);
+    //     });
+    // },
     onChange(info) {
       console.log(info)
-      const { status } = info.file;
-      if (status !== 'uploading') {
-        console.log(info.file, info.fileList);
-      }
-      if (status === 'done') {
-        message.success(`${info.file.name} file uploaded successfully.`);
-      } else if (status === 'error') {
-        message.error(`${info.file.name} file upload failed.`);
-      }
+
     },
     onDrop(e) {
       console.log('Dropped files', e.dataTransfer.files);
@@ -48,6 +72,7 @@ export default function Documents() {
           band files
         </p>
       </Dragger>
+      <input id="fileinput" type="file" accept=".gif,.jpg,.jpeg,.png" onChange={handleChange} />
     </div>
   )
 }
