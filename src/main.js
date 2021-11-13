@@ -1,6 +1,6 @@
 
 import { AppHeader, AppSider, AppFooter, FormComp, } from './components';
-import { SDashBoard, Documents, Calendar, MyApplications, MyQueries, Application } from './pages/student';
+import { SDashBoard, Documents, Calendar, MyApplications, MyQueries, Application,Notices } from './pages/student';
 import { Profile } from './pages/common';
 import ProtectedRoute from './Routes/ProtectedRoute'
 import { Layout } from 'antd';
@@ -22,6 +22,7 @@ let studentSiderData = [
   { title: 'Calendar', linkTo: `/s/calendar`, icon: <CalendarOutlined />, },
   { title: 'My Queries', linkTo: `/s/myqueries`, icon: <QuestionOutlined />, },
   { title: 'Profile', linkTo: `/s/Profile`, icon: <UserOutlined />, },
+  { title: 'Notices', linkTo: `/s/Notices`, icon: <QuestionOutlined />, },
 ]
 
 return (
@@ -39,6 +40,7 @@ return (
                 <ProtectedRoute path={`/s/calendar`} component={Calendar} exact />
                 <ProtectedRoute path={`/s/myqueries`} component={MyQueries} exact />
                 <ProtectedRoute path={`/s/Profile`} component={Profile} exact />
+                <ProtectedRoute path={`/s/Notices`} component={Notices} exact />
                 <ProtectedRoute path="/s/myapplications/:ApplicationId" component={Application} />
                 <ProtectedRoute path={`/s`} component={SDashBoard} exact />            
                 <Redirect to="/" />

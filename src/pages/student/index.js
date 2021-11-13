@@ -4,3 +4,4 @@ export { default as Calendar} from './Calendar';
 export {default as MyApplications } from './myApplications';
 export {default as MyQueries } from './myQueries';
 export {default as Application } from './Application';
+export {default as Notices } from './Notices';

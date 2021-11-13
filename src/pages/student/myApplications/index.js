@@ -91,22 +91,23 @@ export default function MyApplications() {
             </div>
           </Col>
           <Col span={24}>
-            <Tabs defaultActiveKey="1" onChange={() => {}}>
+            <Tabs defaultActiveKey="1" onChange={() => { }}>
               <TabPane tab="3 Application(s) in progress" key="1">
-                {applicationcarddetails.map((data) => (
-                  <ApplicationCard
-                    key={data.ApplicationID}
-                    title={data.title}
-                    subCardData={[
-                      { title: "Appication No.", subtitle: data.ApplicationID },
-                      { title: "Applcation Fee", subtitle: data.fees },
-                      { title: "Last Date", subtitle: data.lastDate },
-                      { title: "Payment Mode", subtitle: "online" },
-                    ]}
-                    downloadPanelData={data.downloadPanelData}
-                    setpsData={data.setpsData}
-                  />
-                ))}
+                {
+                  applicationcarddetails.map((data) => (
+                    <ApplicationCard
+                      key={data.ApplicationID}
+                      title={data.title}
+                      subCardData={[
+                        { title: "Appication No.", subtitle: data.ApplicationID },
+                        { title: "Applcation Fee", subtitle: data.fees },
+                        { title: "Last Date", subtitle: data.lastDate },
+                        { title: "Payment Mode", subtitle: "online" },
+                      ]}
+                      downloadPanelData={data.downloadPanelData}
+                      setpsData={data.setpsData}
+                    />
+                  ))}
               </TabPane>
               <TabPane tab="2 Application(s) completed" key="2">
                 Completed Applications
