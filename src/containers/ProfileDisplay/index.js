@@ -7,7 +7,7 @@ import './style.css'
 export default function ProileDisplay() {
     const [user, setUser] = useContext(UserContext);
     const [ProfileData, setProfileData] = useState()
-
+    const [count,setCount] = useState(0);
     const userData = JSON.parse(user);
     useEffect(() => {
         var axios = require('axios');
@@ -31,7 +31,7 @@ export default function ProileDisplay() {
             });
 
 
-    }, [])
+    }, [count])
 
     return (
         <>

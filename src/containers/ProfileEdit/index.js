@@ -25,9 +25,9 @@ export default function ProfileEdit() {
 
       var raw = JSON.stringify({
         "email": userData['email'],
-        "nationality": val.nationality,
-        "dob": "20-9-2005",
-        "gender": val.Gender,
+        "nationality": val.Nationality,
+        "dob": val.dateofbirth,
+        "gender": val.gender,
         "name": val.firstname,
         "lastname" : val.lastname,
         "phone": val.phone,
