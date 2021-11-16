@@ -8,7 +8,8 @@
 import "./style.css";
 import { Layout, Row, Col, Typography, Tabs } from "antd";
 import { ApplicationCard } from "../../../containers";
-import { useEffect, useState } from "react";
+import { useEffect, useState,useContext } from "react";
+import { UserContext } from "../../../contexts/user";
 
 const { TabPane } = Tabs;
 
@@ -16,32 +17,10 @@ const ApplicationCardData = [
   {
     title: "BTech Application Form",
     subCard: [
-      { title: "Appication No.", subtitle: "BTECH156EW" },
-      { title: "Applcation Fee", subtitle: "1200" },
-      { title: "Last Date", subtitle: "12-08-2021" },
-      { title: "Payment Mode", subtitle: "online" },
-    ],
-    downloadPanelData: [],
-    setpsData: [],
-  },
-  {
-    title: "MBA Application Form",
-    subCard: [
-      { title: "Appication No.", subtitle: "MBA156EW" },
-      { title: "Applcation Fee", subtitle: "1500" },
-      { title: "Last Date", subtitle: "12-12-2021" },
-      { title: "Payment Mode", subtitle: "online" },
-    ],
-    downloadPanelData: [],
-    setpsData: [],
-  },
-  {
-    title: "BSC Application Form",
-    subCard: [
-      { title: "Appication No.", subtitle: "BSCCH156EW" },
-      { title: "Applcation Fee", subtitle: "1000" },
-      { title: "Last Date", subtitle: "1-11-2021" },
-      { title: "Payment Mode", subtitle: "online" },
+      { title: "Appication No.", subtitle: "..." },
+      { title: "Applcation Fee", subtitle: "..." },
+      { title: "Last Date", subtitle: "..." },
+      { title: "Payment Mode", subtitle: "..." },
     ],
     downloadPanelData: [],
     setpsData: [],
@@ -51,6 +30,7 @@ export default function MyApplications() {
   const [count, setcount] = useState(0);
   const [applicationcarddetails, setapplicationcarddetails] =
     useState(ApplicationCardData);
+	const [applicationdetails, setapplicationdetails] = useContext(UserContext);
   useEffect(() => {
     var axios = require("axios");
 
@@ -68,7 +48,12 @@ export default function MyApplications() {
       .then(function (response) {
         const ApplicationCardData_v1 = response.data.Items;
         setapplicationcarddetails(ApplicationCardData_v1);
-      })
+        console.log(ApplicationCardData_v1);
+		setapplicationdetails(ApplicationCardData_v1);
+		ApplicationCardData_v1.map((item) => {
+		console.log(item["GlobalLabels"]["Payment Modes"].map(item => item.title));
+		});
+	})
       .catch(function (error) {
         console.log(error);
       });
@@ -102,7 +87,7 @@ export default function MyApplications() {
                         { title: "Appication No.", subtitle: data.ApplicationID },
                         { title: "Applcation Fee", subtitle: data.fees },
                         { title: "Last Date", subtitle: data.lastDate },
-                        { title: "Payment Mode", subtitle: "online" },
+                        { title: "Payment Mode", subtitle:"online" },
                       ]}
                       downloadPanelData={data.downloadPanelData}
                       setpsData={data.setpsData}

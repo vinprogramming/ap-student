@@ -9,11 +9,12 @@ import {Link} from 'react-router-dom';
 import './style.css';
 
 export default function ApplicationCard({ title, subCardData, downloadPanelData, setpsData }) {
+    // console.log(subCardData[0].subtitle);
     return (
         <div className="ApplicationCard">
             <div className="ApplicationCard_inner">
                 <div className="ApplicationCard_Title">
-                    <Link to={`/s/myapplications/${ title+ 1}`}>
+                    <Link to={`/s/myapplications/${subCardData[0].subtitle}`}>
                         <Typography.Title level={4}>{title}</Typography.Title>
                     </Link>
                 </div>
