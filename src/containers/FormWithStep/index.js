@@ -1,121 +1,32 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./style.css";
 import { Form, Steps, Button, message } from "antd";
 import { FormComp } from "../../components";
+import { Row, Col } from "antd";
 const { Step } = Steps;
 
 const steps = [
   {
     title: "Personal Details",
-    content: [
-      {
-        name: "firstname",
-        label: "First Name",
-        rules: [
-          {
-            type: "string",
-            message: "Must not contain numbers and special characters",
-          },
-          {
-            required: true,
-            message: "Please input your name!",
-          },
-        ],
-        haveOption: false,
-      },
-      {
-        name: "lastname",
-        label: "Last Name",
-        rules: [
-          {
-            type: "string",
-            message: "Must not contain numbers and special characters",
-          },
-          {
-            required: true,
-            message: "Please input your name!",
-          },
-        ],
-        haveOption: false,
-      },
-    ],
   },
   {
-    title: "Schools and Results",
-    content: [
-      {
-        name: "scoolname",
-        label: "School Name",
-        rules: [
-          {
-            type: "string",
-            message: "Must not contain numbers and special characters",
-          },
-          {
-            required: true,
-            message: "Please input your name!",
-          },
-        ],
-        haveOption: false,
-      },
-      {
-        name: "School Address",
-        label: "School address",
-        rules: [
-          {
-            type: "string",
-            message: "Must not contain numbers and special characters",
-          },
-          {
-            required: true,
-            message: "Please input your name!",
-          },
-        ],
-        haveOption: false,
-      },
-      {
-        name: "dateofbirth",
-        label: "Date of Birth",
-        rules: [
-          {
-            type: "date",
-            message: "Enter the DOB",
-          },
-          {
-            required: false,
-            message: "DOb is required!",
-          },
-        ],
-        haveOption: false,
-      },
-      {
-        name: "Nationality",
-        label: "Nationality",
-        rules: [
-          {
-            type: "string",
-            message: "Must not contain numbers and special characters",
-          },
-          {
-            required: true,
-            message: "Please input your nationality!",
-          },
-        ],
-      },
-    ],
+    title: "School Details",
   },
   {
-    title: "Upload Documents",
-    content: "Last-content",
+    title: "Entrance Exam",
+    
   },
   {
-    title: "Fees Payment",
-    content: "Last-content",
+    title: "Ed Details",
+  },
+  {
+    title: "Documents Upload",
   },
 ];
 
 function formsave(val) {}
-export default function FormWithStep() {
+export default function FormWithStep({ application }) {
+  console.log("from form step", application);
   const [current, setCurrent] = React.useState(0);
 
   const next = () => {
@@ -125,7 +36,20 @@ export default function FormWithStep() {
   const prev = () => {
     setCurrent(current - 1);
   };
+  const onSubmit = (e) => {
+    e.preventDefault();
+  };
+  const [ClickedOnEdit, setClickedOnEdit] = useState(false);
 
+  const fields = application["GlobalLabels"];
+  console.log("fields", fields);
+  const PersonalDetails = fields["Personal Details"];
+  const SchoolDetails = fields["Education/School Details"];
+  const EntranceExam = fields["Entrance Exam"];
+  const EdDetails = fields["Ed-Level Details"];
+  const DocumentUploads = fields["Document Uploads"];
+  console.log(PersonalDetails, SchoolDetails, EntranceExam, EdDetails, DocumentUploads);
+  
   return (
     <div className="FormWithSteps">
       <Steps current={current}>
@@ -134,17 +58,80 @@ export default function FormWithStep() {
         ))}
       </Steps>
       <div className="steps-content">
-        <FormComp
-          from={"profile"}
-          data={steps[current].content}
-          apiFunc={formsave}
-          formState={{
-            FirstName: "",
-            LastName: "",
-            Phone: "",
-            DOB: "",
-          }}
-        />
+        <Row>
+          <Col span={24}>
+              
+              <form autoComplete="off" onSubmit={onSubmit} id="DetailForm">
+              
+              {current==0&&PersonalDetails.map((item) =>
+                <div>
+                <br /> {<label>{item.title}</label>}
+                <br />
+                <input
+                  type={item.type}
+                  value={""}
+                  onChange={(e) => {}}
+                  required
+                  disabled={ClickedOnEdit}
+                />
+                </div>
+               )}
+              {current==1&&SchoolDetails.map((item) =>
+                <div>
+                <br /> {<label>{item.title}</label>}
+                <br />
+                <input
+                  type={item.type}
+                  value={""}
+                  onChange={(e) => {}}
+                  required
+                  disabled={ClickedOnEdit}
+                />
+                </div>
+               )}
+              {current==2&&EntranceExam.map((item) =>
+                <div>
+                <br /> {<label>{item.title}</label>}
+                <br />
+                <input
+                  type={item.type}
+                  value={""}
+                  onChange={(e) => {}}
+                  required
+                  disabled={ClickedOnEdit}
+                />
+                </div>
+              )}
+              {current==3&&EdDetails.map((item) =>
+                <div>
+                <br /> {<label>{item.title}</label>}
+                <br />
+                <input
+                  type={item.type}
+                  value={""}
+                  onChange={(e) => {}}
+                  required
+                  disabled={ClickedOnEdit}
+                />
+                </div>
+              )}
+              {current==4&&DocumentUploads.map((item) =>
+                <div>
+                <br /> {<label>{item.title}</label>}
+                <br />
+                <input
+                  type={item.type=='pdf'?'file':''}
+                  value={""}
+                  onChange={(e) => {}}
+                  required
+                  disabled={ClickedOnEdit}
+                />
+                </div>
+              )}
+                
+              </form>
+          </Col>
+        </Row>
       </div>
       <div className="steps-action">
         {current < steps.length - 1 && (

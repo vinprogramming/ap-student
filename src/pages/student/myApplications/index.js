@@ -10,7 +10,7 @@ import { Layout, Row, Col, Typography, Tabs } from "antd";
 import { ApplicationCard } from "../../../containers";
 import { useEffect, useState,useContext } from "react";
 import { UserContext } from "../../../contexts/user";
-
+import axios from "axios";
 const { TabPane } = Tabs;
 
 const ApplicationCardData = [
@@ -32,7 +32,7 @@ export default function MyApplications() {
     useState(ApplicationCardData);
 	const [applicationdetails, setapplicationdetails] = useContext(UserContext);
   useEffect(() => {
-    var axios = require("axios");
+    // var axios = require("axios");
 
     var config = {
       method: "get",
@@ -51,7 +51,7 @@ export default function MyApplications() {
         console.log(ApplicationCardData_v1);
 		setapplicationdetails(ApplicationCardData_v1);
 		ApplicationCardData_v1.map((item) => {
-		console.log(item["GlobalLabels"]["Payment Modes"].map(item => item.title));
+		// console.log(item["GlobalLabels"]["Payment Modes"].map(item => item.title));
 		});
 	})
       .catch(function (error) {
