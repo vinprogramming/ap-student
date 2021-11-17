@@ -9,7 +9,7 @@ import "./style.css";
 import { Layout, Row, Col, Typography, Tabs } from "antd";
 import { ApplicationCard } from "../../../containers";
 import { useEffect, useState,useContext } from "react";
-import { UserContext } from "../../../contexts/user";
+import { ApplicationContext } from "../../../contexts/applicationcontext";
 import axios from "axios";
 const { TabPane } = Tabs;
 
@@ -30,7 +30,7 @@ export default function MyApplications() {
   const [count, setcount] = useState(0);
   const [applicationcarddetails, setapplicationcarddetails] =
     useState(ApplicationCardData);
-	const [applicationdetails, setapplicationdetails] = useContext(UserContext);
+	const [applicationdetails, setapplicationdetails] = useContext(ApplicationContext);
   useEffect(() => {
     // var axios = require("axios");
 
@@ -94,7 +94,7 @@ export default function MyApplications() {
                     />
                   ))}
               </TabPane>
-              <TabPane tab="2 Application(s) completed" key="2">
+              <TabPane tab="0 Application(s) completed" key="2">
                 Completed Applications
               </TabPane>
             </Tabs>

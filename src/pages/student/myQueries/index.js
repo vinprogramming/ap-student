@@ -22,8 +22,8 @@ const getTodaysDate = () => {
   return today = dd + '-' + mm + '-' + yyyy;
 }
 export default function MyQueries() {
-  const [user, setUser] = useContext(UserContext);
-  const userData = JSON.parse(user);
+  // const [user, setUser] = useContext(UserContext);
+  // const userData = JSON.parse(user);
   const history = useHistory();
   const [QueryList, setQueryList] = useState()
   const [countUpdate, setcountUpdate] = useState(0)
@@ -40,10 +40,10 @@ export default function MyQueries() {
   const handleCancel = () => {
     setIsModalVisible(false);
   };
-
+  const useremail = JSON.parse(sessionStorage.getItem("u_decoded"));
   const ApiFunc = (val) => {
     var data = JSON.stringify({
-      "email": userData['email'],
+      "email": useremail.email,
       "qObj": {
         "querydate": getTodaysDate(),
         "querystatus": {
@@ -89,9 +89,9 @@ export default function MyQueries() {
 
     var config = {
       method: 'get',
-      url: `https://m3j6kmp129.execute-api.us-east-1.amazonaws.com/d1/studentqueries?email=${userData['email']}`,
+      url: `https://m3j6kmp129.execute-api.us-east-1.amazonaws.com/d1/studentqueries?email=${useremail.email}`,
       headers: {
-        'email': userData['email'],
+        'email': useremail.email,
         'Authorization': sessionStorage.getItem('id_token') ? sessionStorage.getItem('id_token') : '',
       }
     };
