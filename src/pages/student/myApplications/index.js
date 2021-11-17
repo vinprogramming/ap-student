@@ -31,6 +31,7 @@ export default function MyApplications() {
   const [applicationcarddetails, setapplicationcarddetails] =
     useState(ApplicationCardData);
 	const [applicationdetails, setapplicationdetails] = useContext(ApplicationContext);
+  let ApplicationCardData_v1=[];
   useEffect(() => {
     // var axios = require("axios");
 
@@ -46,7 +47,7 @@ export default function MyApplications() {
 
     axios(config)
       .then(function (response) {
-        const ApplicationCardData_v1 = response.data.Items;
+        ApplicationCardData_v1 = response.data.Items;
         setapplicationcarddetails(ApplicationCardData_v1);
         console.log(ApplicationCardData_v1);
 		setapplicationdetails(ApplicationCardData_v1);
@@ -58,6 +59,9 @@ export default function MyApplications() {
         console.log(error);
       });
   }, [count]);
+
+
+
 
   return (
     <div className="myApplications" style={{ marginTop: "1.5em" }}>
@@ -77,7 +81,7 @@ export default function MyApplications() {
           </Col>
           <Col span={24}>
             <Tabs defaultActiveKey="1" onChange={() => { }}>
-              <TabPane tab="3 Application(s) in progress" key="1">
+              <TabPane tab={`${applicationcarddetails.length} Applcations(s) open`} key="1">
                 {
                   applicationcarddetails.map((data) => (
                     <ApplicationCard

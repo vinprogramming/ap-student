@@ -43,10 +43,10 @@ export default function SDashBoard() {
                                 <DashBoardCard title="Last Active Form" subSpan={['Continue']} />
                             </Col>
                             <Col md={12} className="gutter-row">
-                                <DashBoardCard title="My Applications" subSpan={['3 in progress', '2 completed']} />
+                                <DashBoardCard title="My Applications" subSpan={['6 in progress', '0 completed']} />
                             </Col>
                             <Col md={24} className="gutter-row">
-                                <DashBoardCard title="My Queries" subSpan={['12 open', '8 in progress', '20 closed']} />
+                                <DashBoardCard title="My Queries" subSpan={['4 open', '0 in progress', '1 closed']} />
                             </Col>
                             <Col md={24} className="gutter-row">
                                 <DashBoardCard title="Program Finder" subSpan={['22 programs available']} />
