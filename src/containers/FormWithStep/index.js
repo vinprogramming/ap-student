@@ -24,7 +24,6 @@ const steps = [
   },
 ];
 
-
 export default function FormWithStep({ application }) {
 //   console.log("from form step", application);
   const [current, setCurrent] = React.useState(0);

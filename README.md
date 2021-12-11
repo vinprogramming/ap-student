@@ -1,8 +1,5 @@
--> Please make a new brach
--> fork it to local
-->  Delete .lock file
--> run ```npm -i``` or ```yarn```
--> if using yarn , update it to berry.
--> Don't Merge it directly !!
+# Admission Portal
+- This repository contains the frontend side of the admission portal, for student user of this application. 
 
-->check
+#### Abstract Look Of Architecture :
+![Architecture od admin P](https://user-images.githubusercontent.com/67834407/145363207-3e982edf-b0fc-412f-979c-11de32f5f421.png)
