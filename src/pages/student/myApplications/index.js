@@ -39,9 +39,7 @@ export default function MyApplications() {
       method: "get",
       url: "https://9qj3u7alhc.execute-api.us-east-1.amazonaws.com/s1/applications",
       headers: {
-        Authorization: sessionStorage.getItem("id_token")
-          ? sessionStorage.getItem("id_token")
-          : "",
+        Authorization: sessionStorage.getItem("id_token")? sessionStorage.getItem("id_token"): "",
       },
     };
 
@@ -49,7 +47,7 @@ export default function MyApplications() {
       .then(function (response) {
         ApplicationCardData_v1 = response.data.Items;
         setapplicationcarddetails(ApplicationCardData_v1);
-        console.log(ApplicationCardData_v1);
+        // console.log(ApplicationCardData_v1);    
 		setapplicationdetails(ApplicationCardData_v1);
 		ApplicationCardData_v1.map((item) => {
 		// console.log(item["GlobalLabels"]["Payment Modes"].map(item => item.title));

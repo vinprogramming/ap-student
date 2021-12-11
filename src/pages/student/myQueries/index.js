@@ -40,6 +40,7 @@ export default function MyQueries() {
   const handleCancel = () => {
     setIsModalVisible(false);
   };
+
   const useremail = JSON.parse(sessionStorage.getItem("u_decoded"));
   const ApiFunc = (val) => {
     var data = JSON.stringify({
@@ -82,8 +83,6 @@ export default function MyQueries() {
 
   }
 
-
-
   useEffect(() => {
 
 
@@ -91,7 +90,6 @@ export default function MyQueries() {
       method: 'get',
       url: `https://m3j6kmp129.execute-api.us-east-1.amazonaws.com/d1/studentqueries?email=${useremail.email}`,
       headers: {
-        'email': useremail.email,
         'Authorization': sessionStorage.getItem('id_token') ? sessionStorage.getItem('id_token') : '',
       }
     };
