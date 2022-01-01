@@ -5,11 +5,14 @@
 
 import { Typography } from 'antd';
 import { Subcard, ApplicationDownloadPanel, ApplicationSteps } from '../../components';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './style.css';
-
+/**
+ * 
+ * @param {Object} param0 
+ * @returns 
+ */
 export default function ApplicationCard({ title, subCardData, downloadPanelData, setpsData }) {
-    // console.log(subCardData[0].subtitle);
     return (
         <div className="ApplicationCard">
             <div className="ApplicationCard_inner">

@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./style.css";
-import { Form, Steps, Button, message } from "antd";
-import { FormComp } from "../../components";
+import { Steps, Button, message } from "antd";
 import { Row, Col } from "antd";
 import axios from "axios";
+import PaymentButton from "../../components/PaymentButton";
 const { Step } = Steps;
 
 const steps = [
@@ -22,6 +22,9 @@ const steps = [
   {
     title: "Documents Upload",
   },
+  {
+    title: "Payment",
+  }
 ];
 
 export default function FormWithStep({ application }) {
@@ -75,11 +78,7 @@ export default function FormWithStep({ application }) {
     console.log(data);
     var config = {
       method: 'put',
-<<<<<<< HEAD
       url: `https://d4z2bizxa5.execute-api.us-east-1.amazonaws.com/s1/putapplication`,
-=======
-      url: `https://d4z2bizxa5.execute-api.us-east-1.amazonaws.com/s1/SubmitApplications`,
->>>>>>> 1b0bd6d35306afca2d156e6952da9144222fa088
       headers: {
         'Authorization': `Bearer ${sessionStorage.getItem('id_token')}`,
         'Content-Type': 'application/json'
@@ -260,6 +259,7 @@ export default function FormWithStep({ application }) {
                     />
                   </div>
                 ))}
+              {current === 5 && <PaymentButton amount={application['fees']} />}
             </form>
           </Col>
         </Row>
