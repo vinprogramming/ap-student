@@ -1,8 +1,8 @@
 /**
  * TODO: need to define the proper breakpoints and its design
- * TODO: onClick behaviour
+ * TODO: onClick behavior
  *
- * Flow: MyApplications -> ApplicationCard -> other smmall components.
+ * Flow: MyApplications -> ApplicationCard -> other small components.
  * Written By: Tejas Ladhani
  */
 import "./style.css";
@@ -37,7 +37,7 @@ export default function MyApplications() {
 
     var config = {
       method: "get",
-      url: "https://9qj3u7alhc.execute-api.us-east-1.amazonaws.com/s1/applications",
+      url: "https://d4z2bizxa5.execute-api.us-east-1.amazonaws.com/s1/applications",
       headers: {
         Authorization: sessionStorage.getItem("id_token")
           ? sessionStorage.getItem("id_token")
@@ -88,8 +88,8 @@ export default function MyApplications() {
                       key={data.ApplicationID}
                       title={data.title}
                       subCardData={[
-                        { title: "Appication No.", subtitle: data.ApplicationID },
-                        { title: "Applcation Fee", subtitle: data.fees },
+                        { title: "Application No.", subtitle: data.ApplicationID },
+                        { title: "Application Fee", subtitle: data.fees },
                         { title: "Last Date", subtitle: data.lastDate },
                         { title: "Payment Mode", subtitle:"online" },
                       ]}

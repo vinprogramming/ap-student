@@ -4,7 +4,8 @@ import { AppHeader } from "../../../components";
 export default function Landing() {
   const history = useHistory();
   const hostedUI =
-    "https://handlemyadmissions.auth.us-east-1.amazoncognito.com/login?client_id=4v9s0rnu3ggaauagcikbl2b46l&response_type=token&scope=aws.cognito.signin.user.admin+email+openid+phone+profile&redirect_uri=http://localhost:3000/Interm/";
+    "https://handleallmyadmissions.auth.us-east-1.amazoncognito.com/login?client_id=4rnkgoi7il6kdf8foo0o929bm8&response_type=token&scope=aws.cognito.signin.user.admin+email+openid+phone+profile&redirect_uri=http://localhost:3000/Interm/";
+
   return (
     <div className="Landing">
       <AppHeader />

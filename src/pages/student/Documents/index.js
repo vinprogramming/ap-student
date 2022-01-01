@@ -31,13 +31,13 @@ export default function Documents() {
       "content-type":"application/pdf",
     },
     multiple: false,
-    action:"https://m3j6kmp129.execute-api.us-east-1.amazonaws.com/d1/studentupload",
+    action:"https://0icg981cjj.execute-api.us-east-1.amazonaws.com/d1/studentupload",
     // customRequest:(e)=>{
     //   const formData = new FormData();
     //   formData.append('File', selectedFile);
     //   console.log(formData);
     //   fetch(
-    //     'https://m3j6kmp129.execute-api.us-east-1.amazonaws.com/d1/studentupload',
+    //     'https://0icg981cjj.execute-api.us-east-1.amazonaws.com/d1/studentupload',
     //     {
     //       method: 'POST',
     //       body: JSON.stringify(formData),

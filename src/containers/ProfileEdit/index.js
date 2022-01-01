@@ -40,7 +40,7 @@ export default function ProfileEdit() {
         redirect: 'follow'
       };
 
-      fetch("https://m3j6kmp129.execute-api.us-east-1.amazonaws.com/d1/items", requestOptions)
+      fetch("https://0icg981cjj.execute-api.us-east-1.amazonaws.com/d1/items", requestOptions)
         .then(response => response.text())
         .then(result => console.log(result))
         .catch(error => console.log('error', error));

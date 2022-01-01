@@ -1,6 +1,6 @@
 import { Row, Col, Divider, Typography, Tag, Avatar } from 'antd'
 import { useEffect, useContext, useState } from 'react'
-import { UserOutlined, SearchOutlined } from '@ant-design/icons';
+import { UserOutlined } from '@ant-design/icons';
 import { UserContext } from '../../contexts/user'
 import './style.css'
 
@@ -14,7 +14,7 @@ export default function ProileDisplay() {
 
         var config = {
             method: 'get',
-            url: `https://m3j6kmp129.execute-api.us-east-1.amazonaws.com/d1/items?email=${userData['email']}`,
+            url: `https://0icg981cjj.execute-api.us-east-1.amazonaws.com/d1/items?email=${userData['email']}`,
             headers: {
                 'Authorization': `Bearer ${sessionStorage.getItem('id_token')}`
             }

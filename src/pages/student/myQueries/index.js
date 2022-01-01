@@ -9,6 +9,8 @@ import axios from 'axios';
 import { QueryCard } from '../../../containers';
 import { FormComp } from "../../../components";
 import { data } from './ModalConfig';
+import { v4 as uuidv4 } from 'uuid';
+
 import "./style.css";
 
 
@@ -85,13 +87,13 @@ export default function MyQueries() {
         "assignee": "Alex",
         "querytimestamp": new Date().toLocaleTimeString(),
         "querydesc": val.description,
-        "queryid": 10
+        "queryid": uuidv4()
       }
     });
 
     var config = {
       method: 'put',
-      url: 'https://m3j6kmp129.execute-api.us-east-1.amazonaws.com/d1/studentqueries',
+      url: 'https://0icg981cjj.execute-api.us-east-1.amazonaws.com/d1/studentqueries',
       headers: {
         'Authorization': `Bearer ${sessionStorage.getItem('id_token')}`,
         'Content-Type': 'application/json'
@@ -125,7 +127,7 @@ export default function MyQueries() {
      */
     var config = {
       method: 'get',
-      url: `https://m3j6kmp129.execute-api.us-east-1.amazonaws.com/d1/studentqueries?email=${useremail.email}`,
+      url: `https://0icg981cjj.execute-api.us-east-1.amazonaws.com/d1/studentqueries?email=${useremail.email}`,
       headers: {
         'Authorization': sessionStorage.getItem('id_token') ? sessionStorage.getItem('id_token') : '',
       }
