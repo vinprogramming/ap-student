@@ -25,7 +25,7 @@ const steps = [
 ];
 
 export default function FormWithStep({ application }) {
-//   console.log("from form step", application);
+  //   console.log("from form step", application);
   const [current, setCurrent] = React.useState(0);
 
   const next = () => {
@@ -47,10 +47,10 @@ export default function FormWithStep({ application }) {
   let EntranceExam = fields["Entrance Exam"];
   let EdDetails = fields["Ed-Level Details"];
   let DocumentUploads = fields["Document Uploads"];
-  
+
   const [formdata, setFormdata] = useState({
-	ApplicationID : ApplicationID,
-	PersonalDetails: PersonalDetails,
+    ApplicationID: ApplicationID,
+    PersonalDetails: PersonalDetails,
     SchoolDetails: SchoolDetails,
     EntranceExam: EntranceExam,
     EdDetails: EdDetails,
@@ -63,19 +63,19 @@ export default function FormWithStep({ application }) {
     return timestamp;
   }
   const ApiFunction = (val) => {
-	console.log("val", val);
+    console.log("val", val);
     var data = {
-	  "applicationid": val["ApplicationID"],
+      "applicationid": val["ApplicationID"],
       "email": useremail.email,
       "submission": {
         "submissiontimestamp": getTodaysDate(),
-		"submissiondata": val,
+        "submissiondata": val,
       }
     };
-	console.log(data);
+    console.log(data);
     var config = {
       method: 'put',
-      url: `https://9qj3u7alhc.execute-api.us-east-1.amazonaws.com/s1/SubmitApplications`,
+      url: `https://d4z2bizxa5.execute-api.us-east-1.amazonaws.com/s1/SubmitApplications`,
       headers: {
         'Authorization': `Bearer ${sessionStorage.getItem('id_token')}`,
         'Content-Type': 'application/json'
@@ -147,7 +147,7 @@ export default function FormWithStep({ application }) {
                     )}
                   </div>
                 ))}
-            
+
               {/* School Details */}
               {current === 1 &&
                 SchoolDetails.map((item, index) => (
@@ -169,7 +169,7 @@ export default function FormWithStep({ application }) {
                     />
                   </div>
                 ))}
-            
+
               {/* Entrance Exam */}
               {current === 2 &&
                 EntranceExam.map((item, index) => (
@@ -212,7 +212,7 @@ export default function FormWithStep({ application }) {
                     )}
                   </div>
                 ))}
-            
+
               {/* Education Details */}
               {current === 3 &&
                 EdDetails.map((item, index) => (
@@ -234,7 +234,7 @@ export default function FormWithStep({ application }) {
                     />
                   </div>
                 ))}
-            
+
               {/* Document Upload Details */}
               {current === 4 &&
                 DocumentUploads.map((item, index) => (
@@ -264,9 +264,10 @@ export default function FormWithStep({ application }) {
       <div className="steps-action">
         {current < steps.length - 1 && (
           <Button type="primary" onClick={
-			  () => {
-				  next();
-		  		  ApiFunction(formdata);}}>
+            () => {
+              next();
+              ApiFunction(formdata);
+            }}>
             Next
           </Button>
         )}
@@ -274,8 +275,8 @@ export default function FormWithStep({ application }) {
           <Button
             type="primary"
             onClick={() => {
-				message.success("Processing complete!")
-				}}
+              message.success("Processing complete!")
+            }}
           >
             Submit Application
           </Button>
