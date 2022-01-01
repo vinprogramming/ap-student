@@ -75,7 +75,7 @@ export default function FormWithStep({ application }) {
 	console.log(data);
     var config = {
       method: 'put',
-      url: `https://9qj3u7alhc.execute-api.us-east-1.amazonaws.com/s1/SubmitApplications`,
+      url: `https://d4z2bizxa5.execute-api.us-east-1.amazonaws.com/s1/putapplication`,
       headers: {
         'Authorization': `Bearer ${sessionStorage.getItem('id_token')}`,
         'Content-Type': 'application/json'
