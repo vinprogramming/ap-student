@@ -22,6 +22,9 @@ const steps = [
   {
     title: "Documents Upload",
   },
+  {
+    title: "Payment",
+  },
 ];
 
 export default function FormWithStep({ application }) {
@@ -56,35 +59,61 @@ export default function FormWithStep({ application }) {
     EdDetails: EdDetails,
     DocumentUploads: DocumentUploads,
   });
+
   // console.log(formdata.PersonalDetails);
   const useremail = JSON.parse(sessionStorage.getItem("u_decoded"));
   const getTodaysDate = () => {
-    const timestamp = (Date.now());
+    const timestamp = Date.now();
     return timestamp;
-  }
+  };
+
+  useEffect(() => {getsaveddata()},[])
+  
+  //get the submitted data from the database if present.
+  const getsaveddata = () => {
+
+    console.log(useremail.email," ",ApplicationID);
+    var config = {
+      method: "get",
+      url: `https://0icg981cjj.execute-api.us-east-1.amazonaws.com/d1/Get_Submitted_Applications?id=${ApplicationID}_${useremail.email}`,
+      headers: {
+        Authorization:`Bearer ${sessionStorage.getItem("id_token")}`,
+        "Content-Type": "application/json",
+      },
+    };
+    axios(config)
+      .then(function (response) {
+        // this is the submission data if it exists
+        const priliminarydata = response.data.body;
+        setFormdata(priliminarydata['Item']['submission'][0].submissiondata);
+        console.log("\n",priliminarydata['Item']['submission'][0].submissiondata,"\n");
+        console.log(formdata['PersonalDetails']);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+  };
+
   const ApiFunction = (val) => {
     console.log("val", val);
     var data = {
-      "applicationid": val["ApplicationID"],
-      "email": useremail.email,
-      "submission": {
-        "submissiontimestamp": getTodaysDate(),
-        "submissiondata": val,
-      }
+      applicationid: val["ApplicationID"],
+      email: useremail.email,
+      submission: {
+        submissiontimestamp: getTodaysDate(),
+        submissiondata: val,
+      },
     };
     console.log(data);
     var config = {
-      method: 'put',
-<<<<<<< HEAD
+      method: "put",
       url: `https://d4z2bizxa5.execute-api.us-east-1.amazonaws.com/s1/putapplication`,
-=======
-      url: `https://d4z2bizxa5.execute-api.us-east-1.amazonaws.com/s1/SubmitApplications`,
->>>>>>> 1b0bd6d35306afca2d156e6952da9144222fa088
       headers: {
-        'Authorization': `Bearer ${sessionStorage.getItem('id_token')}`,
-        'Content-Type': 'application/json'
+        Authorization: `Bearer ${sessionStorage.getItem("id_token")}`,
+        "Content-Type": "application/json",
       },
-      data: data
+      data: data,
     };
 
     axios(config)
@@ -94,9 +123,10 @@ export default function FormWithStep({ application }) {
       .catch(function (error) {
         console.log(error);
       });
-
-  }
-
+  };
+  // console.log(formdata.PersonalDetails[0]['1']);
+   
+  
   return (
     <div className="FormWithSteps">
       <Steps current={current}>
@@ -108,7 +138,6 @@ export default function FormWithStep({ application }) {
         <Row>
           <Col span={24}>
             <form autoComplete="off" onSubmit={onSubmit} id="DetailForm">
-
               {/* Personal Details */}
               {current === 0 &&
                 PersonalDetails.map((item, index) => (
@@ -118,7 +147,7 @@ export default function FormWithStep({ application }) {
                     {item.type !== "option" && (
                       <input
                         type={item.type}
-                        value={PersonalDetails[index].value}
+                        value= {formdata.PersonalDetails[0][index] == undefined ? "" : formdata.PersonalDetails[0][index].value}
                         onChange={(e) => {
                           PersonalDetails[index].value = e.target.value;
                           setFormdata({
@@ -130,10 +159,9 @@ export default function FormWithStep({ application }) {
                         disabled={ClickedOnEdit}
                       />
                     )}
-
                     {item.type === "option" && item.title === "Gender" && (
                       <select
-                        value={PersonalDetails[index].value}
+                        value={formdata.PersonalDetails[0][index] == undefined ? "" : formdata.PersonalDetails[0][index].value}
                         onChange={(e) => {
                           PersonalDetails[index].value = e.target.value;
                           setFormdata({
@@ -160,7 +188,7 @@ export default function FormWithStep({ application }) {
                     <br />
                     <input
                       type="text"
-                      value={SchoolDetails[index].value}
+                      value={formdata.SchoolDetails[0][index] == undefined ? "" : formdata.SchoolDetails[0][index].value}
                       onChange={(e) => {
                         SchoolDetails[index].value = e.target.value;
                         setFormdata({
@@ -183,7 +211,7 @@ export default function FormWithStep({ application }) {
                     {item.type !== "option" && (
                       <input
                         type={item.type}
-                        value={EntranceExam[index].value}
+                        value={formdata.EntranceExam[0][index] == undefined ? "" : formdata.EntranceExam[0][index].value}
                         onChange={(e) => {
                           EntranceExam[index].value = e.target.value;
                           setFormdata({
@@ -197,7 +225,7 @@ export default function FormWithStep({ application }) {
                     )}
                     {item.type === "option" && item.title === "Status" && (
                       <select
-                        value={PersonalDetails[index].value}
+                        value={formdata.PersonalDetails[0][index].value}
                         onChange={(e) => {
                           PersonalDetails[index].value = e.target.value;
                           setFormdata({
@@ -225,7 +253,7 @@ export default function FormWithStep({ application }) {
                     <br />
                     <input
                       type="text"
-                      value={EdDetails[index].value}
+                      value={formdata.EdDetails[0][index] == undefined ? "" : formdata.EdDetails[0][index].value}
                       onChange={(e) => {
                         EdDetails[index].value = e.target.value;
                         setFormdata({
@@ -247,7 +275,7 @@ export default function FormWithStep({ application }) {
                     <br />
                     <input
                       type="file"
-                      value={DocumentUploads[index].value}
+                      value={formdata.DocumentUploads[0][index] == undefined ? "" : formdata.DocumentUploads[0][index].value}
                       onChange={(e) => {
                         DocumentUploads[index].value = e.target.value;
                         setFormdata({
@@ -267,11 +295,13 @@ export default function FormWithStep({ application }) {
 
       <div className="steps-action">
         {current < steps.length - 1 && (
-          <Button type="primary" onClick={
-            () => {
+          <Button
+            type="primary"
+            onClick={() => {
               next();
               ApiFunction(formdata);
-            }}>
+            }}
+          >
             Next
           </Button>
         )}
@@ -279,7 +309,7 @@ export default function FormWithStep({ application }) {
           <Button
             type="primary"
             onClick={() => {
-              message.success("Processing complete!")
+              message.success("Processing complete!");
             }}
           >
             Submit Application
