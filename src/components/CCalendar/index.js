@@ -5,7 +5,7 @@
  *   this will be dynamically allocated from the DB or server.
  *   for now its static
  *
- * Written by: Tejas ladhani
+ * Written by: Tejas Ladhani.
  */
 import { Calendar, Badge } from 'antd';
 import './style.css';

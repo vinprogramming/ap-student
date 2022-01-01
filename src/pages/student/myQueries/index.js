@@ -118,8 +118,6 @@ export default function MyQueries() {
 
   }
 
-
-
   useEffect(() => {
     /**
      * Defines the Effect on first-mount & re-mount of the component.
