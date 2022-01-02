@@ -4,6 +4,7 @@ import { Steps, Button, message } from "antd";
 import { Row, Col } from "antd";
 import axios from "axios";
 import PaymentButton from "../../components/PaymentButton";
+import Loader from "react-loader-spinner";
 const { Step } = Steps;
 
 const steps = [
@@ -146,7 +147,7 @@ export default function FormWithStep({ application }) {
                   <div className="personaldetails">
                     <br /> {<label>{item.title}</label>}
                     <br />
-                    {item.type !== "option" && (
+                    {item.type !== "option" &&(
                       <input
                         type={item.type}
                         value={formdata.PersonalDetails[0][index] == undefined ? "" : formdata.PersonalDetails[0][index].value}
@@ -188,7 +189,7 @@ export default function FormWithStep({ application }) {
                   <div className="schooldetails">
                     <br /> {<label>{item.title}</label>}
                     <br />
-                    <input
+                    {<input
                       type="text"
                       value={formdata.SchoolDetails[0][index] == undefined ? "" : formdata.SchoolDetails[0][index].value}
                       onChange={(e) => {
@@ -200,7 +201,7 @@ export default function FormWithStep({ application }) {
                       }}
                       required
                       disabled={ClickedOnEdit}
-                    />
+                    />}
                   </div>
                 ))}
 
@@ -253,7 +254,7 @@ export default function FormWithStep({ application }) {
                   <div>
                     <br /> {<label>{item.title}</label>}
                     <br />
-                    <input
+                    {<input
                       type="text"
                       value={formdata.EdDetails[0][index] == undefined ? "" : formdata.EdDetails[0][index].value}
                       onChange={(e) => {
@@ -265,7 +266,7 @@ export default function FormWithStep({ application }) {
                       }}
                       required
                       disabled={ClickedOnEdit}
-                    />
+                    />}
                   </div>
                 ))}
 
@@ -275,7 +276,7 @@ export default function FormWithStep({ application }) {
                   <div>
                     <br /> {<label>{item.title}</label>}
                     <br />
-                    <input
+                    {<input
                       type="file"
                       value={formdata.DocumentUploads[0][index] == undefined ? "" : formdata.DocumentUploads[0][index].value}
                       onChange={(e) => {
@@ -287,7 +288,7 @@ export default function FormWithStep({ application }) {
                       }}
                       required
                       disabled={ClickedOnEdit}
-                    />
+                    />}
                   </div>
                 ))}
               {current === 5 && <PaymentButton amount={application['fees']} applicationId={ApplicationID} PaymentInfo={PaymentInfo} setPaymentInfo={setPaymentInfo} />}

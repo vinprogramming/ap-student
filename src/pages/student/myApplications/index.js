@@ -6,12 +6,14 @@
  * Written By: Tejas Ladhani
  */
 import "./style.css";
-import { Layout, Row, Col, Typography, Tabs } from "antd";
+import { Layout, Row, Col, Typography, Tabs,Spin } from "antd";
 import { ApplicationCard } from "../../../containers";
 import { useEffect, useState, useContext } from "react";
 import { ApplicationContext } from "../../../contexts/applicationcontext";
 import axios from "axios";
+import Loader from "react-loader-spinner";
 const { TabPane } = Tabs;
+
 
 const ApplicationCardData = [
   {
@@ -57,6 +59,7 @@ export default function MyApplications() {
       });
   }, [count]);
 
+  console.log(applicationdetails);
 
 
 
@@ -80,7 +83,7 @@ export default function MyApplications() {
             <Tabs defaultActiveKey="1" onChange={() => { }}>
               <TabPane tab={`${applicationcarddetails.length} Applcations(s) open`} key="1">
                 {
-                  applicationcarddetails.map((data) => (
+                  applicationcarddetails.length<2?<Spin/> : applicationcarddetails.map((data) => (
                     <ApplicationCard
                       key={data.ApplicationID}
                       title={data.title}

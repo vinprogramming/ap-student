@@ -3,14 +3,14 @@
  */
 
 import { useState, useEffect } from 'react';
-import { Layout, Row, Tabs, Col, Modal, Typography, Button } from "antd";
+import { Layout, Row, Tabs, Col, Modal, Typography, Button,Spin } from "antd";
 import { PlusCircleOutlined } from "@ant-design/icons";
 import axios from 'axios';
 import { QueryCard } from '../../../containers';
 import { FormComp } from "../../../components";
 import { data } from './ModalConfig';
 import { v4 as uuidv4 } from 'uuid';
-
+import Loader from "react-loader-spinner";
 import "./style.css";
 
 
@@ -181,7 +181,7 @@ export default function MyQueries() {
               <TabPane tab="All" key={tabkey++}>
                 <Row>
                   <Col span={24}>
-                    {QueryList !== undefined ? QueryList.map(data => <QueryCard queryCarddata={data} />) : <div />}
+                    {QueryList !== undefined ? QueryList.map(data => <QueryCard queryCarddata={data} />) : <Spin/>}
                   </Col>
                 </Row>
               </TabPane>

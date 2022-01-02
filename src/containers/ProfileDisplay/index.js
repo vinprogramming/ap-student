@@ -1,7 +1,8 @@
-import { Row, Col, Divider, Typography, Tag, Avatar } from 'antd'
+import { Row, Col, Divider, Typography, Tag, Avatar,Spin } from 'antd'
 import { useEffect, useContext, useState } from 'react'
 import { UserOutlined } from '@ant-design/icons';
-import { UserContext } from '../../contexts/user'
+import { UserContext } from '../../contexts/user';
+import Loader from "react-loader-spinner";
 import './style.css'
 
 export default function ProileDisplay() {
@@ -49,23 +50,23 @@ export default function ProileDisplay() {
                 </Col>
                 <Col span={14}>
                     <div className="ProfileDataRender">
-                        <Typography.Title level={5}> Name : {ProfileData != undefined ? ProfileData.name : ''}</Typography.Title>
+                        <Typography.Title level={5}> Name : {ProfileData != undefined ? ProfileData.name : <Spin/>}</Typography.Title>
 
                     </div>
                     <div className="ProfileDataRender">
-                        <Typography.Title level={5}>Date Of Birth : {ProfileData != undefined ? ProfileData.dob : ''}</Typography.Title>
+                        <Typography.Title level={5}>Date Of Birth : {ProfileData != undefined ? ProfileData.dob : <Spin/>}</Typography.Title>
                     </div>
                     <div className="ProfileDataRender">
-                        <Typography.Title level={5}>Email : {ProfileData != undefined ? ProfileData.email : ''}</Typography.Title>
+                        <Typography.Title level={5}>Email : {ProfileData != undefined ? ProfileData.email : <Spin/>}</Typography.Title>
                     </div>
                     <div className="ProfileDataRender">
-                        <Typography.Title level={5}>Gender : {ProfileData != undefined ? ProfileData.gender : ''}</Typography.Title>
+                        <Typography.Title level={5}>Gender : {ProfileData != undefined ? ProfileData.gender : <Spin/>}</Typography.Title>
                     </div>
                     <div className="ProfileDataRender">
-                        <Typography.Title level={5}>Nationality : {ProfileData != undefined ? ProfileData.nationality : ''}</Typography.Title>
+                        <Typography.Title level={5}>Nationality : {ProfileData != undefined ? ProfileData.nationality : <Spin/>}</Typography.Title>
                     </div>
                     <div className="ProfileDataRender">
-                        <Typography.Title level={5}>Phone Number  : {ProfileData != undefined ? ProfileData.phone : ''}</Typography.Title>
+                        <Typography.Title level={5}>Phone Number  : {ProfileData != undefined ? ProfileData.phone : <Spin/>}</Typography.Title>
                     </div>
                     <div className="ProfileDataRender">
                         <Tag color="magenta">No. Of Application : 5</Tag>

@@ -1,5 +1,5 @@
 // import { PageHeader } from '../../components'
-import { Row, Col } from 'antd'
+import { Row, Col,Spin } from 'antd'
 import { Skeleton, Switch, Card, Avatar } from 'antd';
 import { EditOutlined, EllipsisOutlined, DeleteOutlined } from '@ant-design/icons';
 import { useState, useEffect } from 'react';
@@ -39,8 +39,7 @@ export default function ViewNotices() {
         <div className="ViewNotices">
             {/* <PageHeader title="View Notices" /> */}
             <Row sm={24} md={12} lg={6} xl={6} gutter={24}>
-                {Notices != undefined &&
-                    Notices.map((item, index) =>
+                {Notices == undefined ? <Spin/> : Notices.map((item, index) =>
                         <Col key={index}>
                             <Card
                                 style={{ width: 300, marginTop: 16 }}
