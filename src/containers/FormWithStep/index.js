@@ -51,6 +51,7 @@ export default function FormWithStep({ application }) {
   let EdDetails = fields["Ed-Level Details"];
   let DocumentUploads = fields["Document Uploads"];
 
+  const [PaymentInfo, setPaymentInfo] = useState({ order_id: "", payment_id: "" })
   const [formdata, setFormdata] = useState({
     ApplicationID: ApplicationID,
     PersonalDetails: PersonalDetails,
@@ -58,6 +59,7 @@ export default function FormWithStep({ application }) {
     EntranceExam: EntranceExam,
     EdDetails: EdDetails,
     DocumentUploads: DocumentUploads,
+    PaymentInfo: PaymentInfo
   });
 
   // console.log(formdata.PersonalDetails);
@@ -288,7 +290,7 @@ export default function FormWithStep({ application }) {
                     />
                   </div>
                 ))}
-              {current === 5 && <PaymentButton amount={application['fees']} applicationId={ApplicationID}/>}
+              {current === 5 && <PaymentButton amount={application['fees']} applicationId={ApplicationID} PaymentInfo={PaymentInfo} setPaymentInfo={setPaymentInfo} />}
             </form>
           </Col>
         </Row>
@@ -300,7 +302,7 @@ export default function FormWithStep({ application }) {
             type="primary"
             onClick={() => {
               next();
-              ApiFunction(formdata);
+              ApiFunction({ ...formdata, PaymentInfo });
             }}
           >
             Next
