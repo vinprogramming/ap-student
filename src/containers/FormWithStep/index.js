@@ -288,7 +288,7 @@ export default function FormWithStep({ application }) {
                     />
                   </div>
                 ))}
-              {current === 5 && <PaymentButton amount={application['fees']} />}
+              {current === 5 && <PaymentButton amount={application['fees']} applicationId={ApplicationID}/>}
             </form>
           </Col>
         </Row>

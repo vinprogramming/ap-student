@@ -23,10 +23,16 @@ const loadScript = src => {
 }
 
 const __DEV__ = document.domain === 'localhost'
-
-function getOrderId(amount) {
+/**
+ * 
+ * @param {Number} amount 
+ * @param {String} applicationId 
+ * @param {String} email 
+ */
+function getOrderId(amount, applicationId, email) {
     var data = JSON.stringify({
-        "amount": amount
+        "amount": amount * 100,
+        "id": applicationId + "_" + email
     });
 
     var config = {
@@ -52,12 +58,12 @@ function getOrderId(amount) {
 
 /**
  * Integrating Razorpay payment gateway via this Button. onClick=> will give a ready made UI pop-up.
- * @param {Number} amount --get from Backend via API call to lambda
+ * @param {props} object --will have amount and application_id in it
  * @returns {Node} -- UI DIV
  */
 export default function PaymentButton(props) {
     const UserMetaData = JSON.parse(sessionStorage.getItem('u_decoded'))
-    console.log(UserMetaData)
+
     async function displayRazorpay() {
         const res = await loadScript('https://checkout.razorpay.com/v1/checkout.js')
 
@@ -66,21 +72,25 @@ export default function PaymentButton(props) {
             return
         }
 
+        const order_id = getOrderId(props.amount, props.applicationId, UserMetaData.email)
         const options = {
             key: __DEV__ ? 'rzp_test_NRrhuDEU5IeRQx' : 'PRODUCTION_KEY',
             currency: 'INR',
             amount: props.amount * 100,
-            order_id: getOrderId(props.amount),
+            order_id,
             description: 'Thank you for paying the Fees.You will hear from us soon !',
             handler: function (response) {
-                alert(response.razorpay_payment_id)
-                alert(response.razorpay_order_id)
-                alert(response.razorpay_signature)
+                // !DIsCUSS THIS
+                console.log(order_id)
+                console.log(response.razorpay_payment_id)
             },
             prefill: {
-                // !CHANGE THIS
                 email: UserMetaData !== null ? UserMetaData.email : '',
-                phone_number: UserMetaData !== null ? UserMetaData.phone_number : '',
+                contact: UserMetaData !== null ? parseInt(UserMetaData['phone_number'].substring(3, 13)) : '',
+            },
+            readonly: {
+                email: true,
+                contact: true
             }
         }
         const paymentObject = new window.Razorpay(options)
