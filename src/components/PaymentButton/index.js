@@ -56,7 +56,8 @@ function getOrderId(amount) {
  * @returns {Node} -- UI DIV
  */
 export default function PaymentButton(props) {
-    const UserMetaData = sessionStorage.getItem('u_decoded')
+    const UserMetaData = JSON.parse(sessionStorage.getItem('u_decoded'))
+    console.log(UserMetaData)
     async function displayRazorpay() {
         const res = await loadScript('https://checkout.razorpay.com/v1/checkout.js')
 
