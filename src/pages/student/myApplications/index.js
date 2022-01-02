@@ -11,7 +11,7 @@ import { ApplicationCard } from "../../../containers";
 import { useEffect, useState, useContext } from "react";
 import { ApplicationContext } from "../../../contexts/applicationcontext";
 import axios from "axios";
-import Loader from "react-loader-spinner";
+
 const { TabPane } = Tabs;
 
 
@@ -38,7 +38,7 @@ export default function MyApplications() {
 
     var config = {
       method: "get",
-      url: "https://d4z2bizxa5.execute-api.us-east-1.amazonaws.com/s1/applications",
+      url: "https://0icg981cjj.execute-api.us-east-1.amazonaws.com/d1/applications",
       headers: {
         Authorization: sessionStorage.getItem("id_token") ? sessionStorage.getItem("id_token") : "",
       },

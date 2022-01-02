@@ -15,7 +15,7 @@ export default function ViewNotices() {
 
         var config = {
             method: 'get',
-            url: 'https://d4z2bizxa5.execute-api.us-east-1.amazonaws.com/s1/notices',
+            url: 'https://0icg981cjj.execute-api.us-east-1.amazonaws.com/d1/notices',
             headers: {
                 'Authorization': `Bearer ${sessionStorage.getItem('id_token')}`
             }

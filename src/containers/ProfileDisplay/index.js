@@ -2,7 +2,7 @@ import { Row, Col, Divider, Typography, Tag, Avatar,Spin } from 'antd'
 import { useEffect, useContext, useState } from 'react'
 import { UserOutlined } from '@ant-design/icons';
 import { UserContext } from '../../contexts/user';
-import Loader from "react-loader-spinner";
+
 import './style.css'
 
 export default function ProileDisplay() {

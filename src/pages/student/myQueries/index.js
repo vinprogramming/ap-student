@@ -10,7 +10,7 @@ import { QueryCard } from '../../../containers';
 import { FormComp } from "../../../components";
 import { data } from './ModalConfig';
 import { v4 as uuidv4 } from 'uuid';
-import Loader from "react-loader-spinner";
+
 import "./style.css";
 
 
