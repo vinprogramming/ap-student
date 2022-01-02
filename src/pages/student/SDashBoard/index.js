@@ -15,8 +15,8 @@ import './style.css';
 export default function SDashBoard() {
     const UserName=()=>{
         const temp=JSON.parse(sessionStorage.getItem('u_decoded'))
-        // console.log(temp['cognito:username'])
-        return temp['cognito:username'];
+        // console.log(temp.name)
+        return temp.name;
     }
     
     return (

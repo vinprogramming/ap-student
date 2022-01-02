@@ -225,7 +225,7 @@ export default function FormWithStep({ application }) {
                     )}
                     {item.type === "option" && item.title === "Status" && (
                       <select
-                        value={formdata.PersonalDetails[0][index].value}
+                        value={formdata.PersonalDetails[0][index] == undefined ? "" : formdata.PersonalDetails[0][index].value}
                         onChange={(e) => {
                           PersonalDetails[index].value = e.target.value;
                           setFormdata({
