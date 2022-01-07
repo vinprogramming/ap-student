@@ -45,7 +45,7 @@ export default function ProileDisplay() {
             </Row>
             <Row>
                 <Col span={10}>
-                    <Avatar shape="square" size={200} icon={<UserOutlined />} />
+                    <Avatar shape="square" size={100} icon={<UserOutlined />}  />
 
                 </Col>
                 <Col span={14}>
