@@ -7,7 +7,7 @@
   font-family: 'Poppins', sans-serif;
 }
 .Landing .ant-layout-header{
-  background:white;
+  background:white !important;
 }
 .showcase
 {
