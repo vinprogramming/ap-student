@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/admission-p/static/css/main.5e960e02.chunk.css",
+    "main.js": "/admission-p/static/js/main.53f137ef.chunk.js",
+    "main.js.map": "/admission-p/static/js/main.53f137ef.chunk.js.map",
+    "runtime-main.js": "/admission-p/static/js/runtime-main.5a7d6f26.js",
+    "runtime-main.js.map": "/admission-p/static/js/runtime-main.5a7d6f26.js.map",
+    "static/css/2.786ae0dd.chunk.css": "/admission-p/static/css/2.786ae0dd.chunk.css",
+    "static/js/2.f566a210.chunk.js": "/admission-p/static/js/2.f566a210.chunk.js",
+    "static/js/2.f566a210.chunk.js.map": "/admission-p/static/js/2.f566a210.chunk.js.map",
+    "static/js/3.42f04beb.chunk.js": "/admission-p/static/js/3.42f04beb.chunk.js",
+    "static/js/3.42f04beb.chunk.js.map": "/admission-p/static/js/3.42f04beb.chunk.js.map",
+    "index.html": "/admission-p/index.html",
+    "static/css/2.786ae0dd.chunk.css.map": "/admission-p/static/css/2.786ae0dd.chunk.css.map",
+    "static/css/main.5e960e02.chunk.css.map": "/admission-p/static/css/main.5e960e02.chunk.css.map",
+    "static/js/2.f566a210.chunk.js.LICENSE.txt": "/admission-p/static/js/2.f566a210.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.5a7d6f26.js",
+    "static/css/2.786ae0dd.chunk.css",
+    "static/js/2.f566a210.chunk.js",
+    "static/css/main.5e960e02.chunk.css",
+    "static/js/main.53f137ef.chunk.js"
+  ]
+}
