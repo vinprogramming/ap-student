@@ -50,4 +50,4 @@ jobs:
           app-name: 'vintestwebapp'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1F204F35F5E54E9BBD8A29805B4D01CC }}
-          package: build_output
+          package: .
