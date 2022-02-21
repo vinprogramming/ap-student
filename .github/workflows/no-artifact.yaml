@@ -1,4 +1,4 @@
-name: Build and Deploy Admissions Portal to Azure Web App
+name: Zip Build and Deploy Admissions Portal to Azure Web App
 on:
   workflow_dispatch:
 
