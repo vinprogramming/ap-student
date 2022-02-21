@@ -1,6 +1,6 @@
 {
   "name": "admission-p",
-  "homepage": "http://admission-portal.github.io/admission-p/",
+  "homepage": ".",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
