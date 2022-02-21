@@ -1,6 +1,6 @@
 {
   "name": "admission-p",
-  "homepage": "https://vinanothernodejs.azurewebsites.net",
+  "homepage": ".",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
