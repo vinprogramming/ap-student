@@ -1,13 +1,10 @@
 name: Build and Deploy Admissions Portal to Azure Web App
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
 
 env:
-  AZURE_WEBAPP_NAME: 'vintestnodejsapp'    # set this to your application's name
-  AZURE_WEBAPP_PACKAGE_PATH: 'build/'      # set this to the path to your web app project, defaults to the repository root
+  AZURE_WEBAPP_NAME: 'vinanothernodejs'    # set this to your application's name
+  AZURE_WEBAPP_PACKAGE_PATH: 'zippedout.zip'      # set this to the path to your web app project, defaults to the repository root
   NODE_VERSION: '16.x'                # set this to the node version to use
 
 jobs:
@@ -26,12 +23,13 @@ jobs:
       run: |
         npm install
         npm run build --if-present
-
+        cd build
+        zip -r zippedout.zip ./*
 
     - name: 'Deploy to Azure WebApp'
       id: deploy-to-webapp 
       uses: azure/webapps-deploy@v2
       with:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
-        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE_ANO }}
         package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
