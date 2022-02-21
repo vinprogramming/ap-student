@@ -12,10 +12,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    environment:
-      name: 'Production'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-
     steps:
       - uses: actions/checkout@v2
 
@@ -33,12 +29,24 @@ jobs:
         with:
           name: build_output
           path: ./build
-
-#       - name: 'Deploy to Azure Web App'
-#         id: deploy-to-webapp
-#         uses: azure/webapps-deploy@v2
-#         with:
-#           app-name: 'vintestwebapp'
-#           slot-name: 'Production'
-#           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1F204F35F5E54E9BBD8A29805B4D01CC }}
-#           package: ./build/
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: 'Production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+    steps:
+      - name: Download a Build Artifact
+        uses: actions/download-artifact@v2.1.0
+        with:
+          name: build_output
+      - name: checking files
+        run: |
+          ls
+      - name: 'Deploy to Azure Web App'
+        id: deploy-to-webapp
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'vintestwebapp'
+          slot-name: 'Production'
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1F204F35F5E54E9BBD8A29805B4D01CC }}
+          package: build_output
